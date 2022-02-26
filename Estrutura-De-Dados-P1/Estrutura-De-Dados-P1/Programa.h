@@ -1,7 +1,12 @@
 #ifndef PROGRAMA_H
 #define PROGRAMA_H
 
+// Includes && Using Namespace
 #include <iostream>
-int main();
+#include "Pilha.h"
 
-#endif
+// Declaração de funções
+int main();
+void sample();
+
+#endif // #ifndef PROGRAMA_H
