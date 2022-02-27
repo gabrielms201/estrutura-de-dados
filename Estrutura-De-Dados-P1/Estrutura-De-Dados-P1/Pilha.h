@@ -14,25 +14,125 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 using namespace std;
 
 // Tipo e tamanho da pilha
-const int TAM_PILHA = 10;
-typedef int TIPO;
 
 // Class Pilha
+template <class T, size_t size>
 class Pilha 
 {
 public:
 	void Init();
 	bool IsEmpty();
-	void Push(TIPO element);
-	TIPO Pop();
-	TIPO Topo();
+	void Push(T element);
+	T Pop();
+	T Topo();
 	bool IsFull();
 	int Size();
 	void Print();
+	~Pilha();
 	
 private: 
 	int _topo;
-	TIPO _pilha[TAM_PILHA];
-
+	T _pilha[size];
 };
+
+
+
+template<class T, size_t size>
+inline void Pilha<T, size>::Init()
+{
+	_topo = -1;
+}
+
+template<class T, size_t size>
+inline bool Pilha<T, size>::IsEmpty()
+{
+	if (_topo == -1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+template<class T, size_t size>
+inline void Pilha<T, size>::Push(T element)
+{
+	if (!IsFull())
+	{
+		_pilha[++_topo] = element;
+	}
+	else
+	{
+		Errors::AvisoOverFlow();
+	}
+}
+
+template<class T, size_t size>
+inline T Pilha<T, size>::Pop()
+{
+	if (!IsEmpty())
+	{
+		return _pilha[_topo--];
+	}
+	else
+	{
+		Errors::AvisoUnderFlow();
+	}
+}
+
+template<class T, size_t size>
+inline T Pilha<T, size>::Topo()
+{
+	if (!IsEmpty())
+	{
+		return _pilha[_topo];
+	}
+	else
+	{
+		Errors::AvisoUnderFlow();
+		return -1;
+	}
+}
+
+template<class T, size_t size>
+inline bool Pilha<T, size>::IsFull()
+{
+	if (_topo == size - 1)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+template<class T, size_t size>
+inline int Pilha<T, size>::Size()
+{
+	return _topo + 1;
+}
+
+template<class T, size_t size>
+inline void Pilha<T, size>::Print()
+{
+	for (int i = 0; i < size; i++)
+	{
+		cout << _pilha[i];
+		if (i != size - 1)
+		{
+			cout << ", ";
+		}
+	}
+}
+
+template<class T, size_t size>
+inline Pilha<T, size>::~Pilha()
+{
+
+}
+
 #endif // #ifndef PILHA_H
+

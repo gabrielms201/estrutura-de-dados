@@ -7,12 +7,10 @@ Paulo Henrique Braga Cechinel			| TIA: 32151128
 Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 */
 
-
-
 #include "Programa.h"
 void sample()
 {
-	Pilha pilha = Pilha();
+	Pilha<int, 10> pilha;
 	pilha.Init();
 	// Deve popular a pilha
 	pilha.Push(10);
