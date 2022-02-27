@@ -11,6 +11,7 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 
 // Includes && Using Namespace
 #include "Errors.h"
+#include <stdarg.h> 
 using namespace std;
 
 // Tipo e tamanho da pilha
@@ -22,7 +23,8 @@ class Pilha
 public:
 	void Init();
 	bool IsEmpty();
-	void Push(T element);
+#define Push(...) m_Push(__VA_ARGS__, NULL)
+	void m_Push(T element, ...);
 	T Pop();
 	T Topo();
 	bool IsFull();
@@ -57,16 +59,21 @@ inline bool Pilha<T, size>::IsEmpty()
 }
 
 template<class T, size_t size>
-inline void Pilha<T, size>::Push(T element)
+inline void Pilha<T, size>::m_Push(T element, ...)
 {
-	if (!IsFull())
+	va_list elements;
+	for (va_start(elements, element); element != NULL; element = va_arg(elements, T))
 	{
-		_pilha[++_topo] = element;
+		if (!IsFull())
+		{
+			_pilha[++_topo] = element;
+		}
+		else
+		{
+			Errors::AvisoOverFlow();
+		}
 	}
-	else
-	{
-		Errors::AvisoOverFlow();
-	}
+	
 }
 
 template<class T, size_t size>
@@ -135,4 +142,3 @@ inline Pilha<T, size>::~Pilha()
 }
 
 #endif // #ifndef PILHA_H
-

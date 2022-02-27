@@ -8,6 +8,7 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 */
 
 #include "Programa.h"
+
 void sample()
 {
 	Pilha<int, 10> pilha;
@@ -34,6 +35,7 @@ void sample()
 	cout << "\tIsEmpty: " << pilha.IsEmpty() << endl;
 	cout << "\tIsFull: " << pilha.IsFull() << endl;
 	cout << "\tTamanho: " << pilha.Size() << endl;
+
 	cout << "Valor da Pilha: ";
 	pilha.Print();
 	for (int i = 0; i < 10; i++)
@@ -42,6 +44,11 @@ void sample()
 	}
 	cout << "\nApos esvaziar a pilha: " << endl;
 	cout << "\tIsEmpty: " << pilha.IsEmpty() << endl;
+
+	pilha.Push(50, 20, 30);
+	pilha.Push(10);
+	cout << "Valor da Pilha: ";
+	pilha.Print();
 }
 int main() 
 {
