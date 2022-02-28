@@ -35,7 +35,6 @@ void sample()
 	cout << "\tIsEmpty: " << pilha.IsEmpty() << endl;
 	cout << "\tIsFull: " << pilha.IsFull() << endl;
 	cout << "\tTamanho: " << pilha.Size() << endl;
-
 	cout << "Valor da Pilha: ";
 	pilha.Print();
 	for (int i = 0; i < 10; i++)
@@ -45,8 +44,7 @@ void sample()
 	cout << "\nApos esvaziar a pilha: " << endl;
 	cout << "\tIsEmpty: " << pilha.IsEmpty() << endl;
 
-	pilha.Push(50, 20, 30);
-	pilha.Push(10);
+	pilha.Push(100, 90, 80, 70, 60, 50, 40, 30, 20, 10);
 	cout << "Valor da Pilha: ";
 	pilha.Print();
 }

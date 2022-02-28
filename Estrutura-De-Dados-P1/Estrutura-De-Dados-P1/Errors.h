@@ -7,7 +7,7 @@
 using namespace std;
 
 // Struct dos Errors
-static struct Errors 
+struct Errors
 {
 	static void AvisoOverFlow()
 	{
@@ -19,4 +19,5 @@ static struct Errors
 		cout << "ERRO: UNDERFLOW" << endl;
 	}
 };
+
 #endif // #ifndef ERRORS_H
