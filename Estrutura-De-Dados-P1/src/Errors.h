@@ -6,7 +6,7 @@
 #include <string>
 using namespace std;
 
-// Struct dos Errors
+// Struct dosd Errors
 struct Errors 
 {
 	static void AvisoOverFlow()

@@ -367,7 +367,12 @@ MigrationBackup/
 # Built Visual Studio Code Extensions
 *.vsix
 
+# Dev C++ && Binaries
 *.h.gch
 *.cpp.gch
 *.exe
 *.o
+
+# Build Folder
+
+Estrutura-De-Dados-P1/build/
