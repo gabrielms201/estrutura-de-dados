@@ -8,7 +8,6 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 */
 
 
-
 #include "Programa.h"
 void sample()
 {

@@ -7,7 +7,7 @@
 using namespace std;
 
 // Struct dos Errors
-static struct Errors 
+struct Errors 
 {
 	static void AvisoOverFlow()
 	{
