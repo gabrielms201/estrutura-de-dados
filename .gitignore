@@ -366,3 +366,8 @@ MigrationBackup/
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+*.h.gch
+*.cpp.gch
+*.exe
+*.o
