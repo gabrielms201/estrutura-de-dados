@@ -18,11 +18,11 @@ using namespace std;
 class Calculadora
 {
 public:
-	static bool IsOperator(char);
-	static bool IsOperand(char);
-	static bool EqlOrhigher(char, char);
+	static bool Operador(char);
+	static bool Operando(char);
+	static bool igualOuMaior(char, char);
 	static string Convert(string);
-	static int Precedence(char op);
+	static int Procedencia(char operador);
 };
 
 
