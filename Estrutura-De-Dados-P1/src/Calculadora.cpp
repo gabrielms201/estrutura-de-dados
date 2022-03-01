@@ -8,71 +8,71 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 */
 #include "Calculadora.h"
 
-bool Calculadora::IsOperator(char c) 
-{
-	if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+bool Calculadora::Operador(char ch) {
+	
+	if (ch == '*' || ch == '/' || ch == '+' || ch == '-' || ch == '^')
 		return true;
 	return false;
 }
 
-bool Calculadora::IsOperand(char c)
-{
-	if (c >= 'A' && c <= 'Z')
+bool Calculadora::Operando(char ch){
+	
+	if (ch >= 'A' && ch <= 'Z')
 		return true;
-	if (c >= 'a' && c <= 'z')
+	if (ch >= 'a' && ch <= 'z')
 		return true;
-	if (c >= '0' && c <= '9')
+	if (ch >= '0' && ch <= '9')
 		return true;
 	return false;
 }
 
-int Calculadora::Precedence(char op)
-{
-	if (op == '+' || op == '-')
+int Calculadora::Procedencia(char operador){
+	
+	if (operador == '+' || operador == '-')
 		return 1;
-	if (op == '*' || op == '/')
+	if (operador == '*' || operador == '/')
 		return 2;
-	if (op == '^')
+	if (operador == '^')
 		return 3;
 	return 0;
 }
 
-bool Calculadora::EqlOrhigher(char op1, char op2)
-{
-	int p1 = Calculadora::Precedence(op1);
-	int p2 = Calculadora::Precedence(op2);
-	if (p1 == p2) {
-		if (op1 == '^')
+bool Calculadora::igualOuMaior(char oper1, char oper2){
+	
+	int x1 = Calculadora::Procedencia(oper1);
+	int x2 = Calculadora::Procedencia(oper2);
+	if (x1 == x2) {
+		if (oper1 == '^')
 			return false;
 		return true;
 	}
-	return  (p1 > p2 ? true : false);
+	return  (x1 > x2 ? true : false);
 }
 
-string Calculadora::Convert(string infix)
-{
+string Calculadora::Convert(string notacao_infixa){
+	
 	Pilha S = Pilha();
-	string postfix = "";
+	string notacao_posfixa = "";
 	char ch;
 
 	S.Push('(');
-	infix += ')';
+	notacao_infixa += ')';
 
-	for (int i = 0; i < infix.length(); i++)
+	for (int i = 0; i < notacao_infixa.length(); i++)
 	{
-		ch = infix[i];
+		ch = notacao_infixa[i];
 
 		if (ch == ' ')
 			continue;
 		else if (ch == '(')
 			S.Push(ch);
-		else if (Calculadora::IsOperand(ch))
+		else if (Calculadora::Operando(ch))
 			postfix += ch;
-		else if (Calculadora::IsOperator(ch)) 
+		else if (Calculadora::Operador(ch)) 
 		{
-			while (!S.IsEmpty() && Calculadora::EqlOrhigher(S.Topo(), ch)) 
+			while (!S.IsEmpty() && Calculadora::igualOuMaior(S.Topo(), ch)) 
 			{
-				postfix += S.Topo();
+				notacao_posfixa += S.Topo();
 				S.Pop();
 			}
 			S.Push(ch);
@@ -81,11 +81,11 @@ string Calculadora::Convert(string infix)
 		{
 			while (!S.IsEmpty() && S.Topo() != '(') 
 			{
-				postfix += S.Topo();
+				notacao_posfixa += S.Topo();
 				S.Pop();
 			}
 			S.Pop();
 		}
 	}
-	return postfix;
+	return notacao_posfixa;
 }
