@@ -67,7 +67,7 @@ string Calculadora::Convert(string notacao_infixa){
 		else if (ch == '(')
 			S.Push(ch);
 		else if (Calculadora::Operando(ch))
-			postfix += ch;
+			notacao_posfixa += ch;
 		else if (Calculadora::Operador(ch)) 
 		{
 			while (!S.IsEmpty() && Calculadora::igualOuMaior(S.Topo(), ch)) 
