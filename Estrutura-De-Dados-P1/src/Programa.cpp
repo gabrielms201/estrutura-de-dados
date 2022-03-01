@@ -6,8 +6,6 @@ Mayara Meneghetti Honda					| TIA: 32152280
 Paulo Henrique Braga Cechinel			| TIA: 32151128 
 Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 */
-
-
 #include "Programa.h"
 void sample()
 {
@@ -46,5 +44,19 @@ void sample()
 }
 int main() 
 {
-	sample();
+	//sample();
+	string infix_expression, postfix_expression;
+	int ch;
+	do 
+	{
+		cout << " Coloque a notacao infixa: ";
+		cin >> infix_expression;
+		postfix_expression = Calculadora::Convert(infix_expression);
+		cout << "\n Sua notacao infixa eh: " << infix_expression;
+		cout << "\n\n A notacao posfixa eh: " << postfix_expression << "\n";
+		cout << "\n \t Quer inserir outra notacao infixa (1/ 0)\n?";
+		cin >> ch;
+
+	} while (ch == 1);
+	return 0;
 }

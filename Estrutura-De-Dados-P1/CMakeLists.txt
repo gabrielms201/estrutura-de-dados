@@ -21,6 +21,8 @@ target_sources("${PROJECT_NAME}" PRIVATE
     "src/Pilha.cpp"
     "src/Pilha.h"
     "src/Errors.h"
+    "src/Calculadora.cpp"
+    "src/Calculadora.h"
 )
 install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
 

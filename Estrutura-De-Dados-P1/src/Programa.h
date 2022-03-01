@@ -12,6 +12,7 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 // Includes && Using Namespace
 #include <iostream>
 #include "Pilha.h"
+#include "Calculadora.h"
 
 // Declaração de funções
 int main();

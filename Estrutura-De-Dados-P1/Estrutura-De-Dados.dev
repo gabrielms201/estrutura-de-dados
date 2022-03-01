@@ -29,7 +29,7 @@ IncludeVersionInfo=0
 SupportXPThemes=0
 CompilerSet=0
 CompilerSettings=0000000000000000000000000
-UnitCount=5
+UnitCount=7
 
 [VersionInfo]
 Major=1
@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=src\Errors.h
+FileName=..\..\..\..\..\temp\estrutura-de-dados-p1\Estrutura-De-Dados-P1\src\Errors.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -61,7 +61,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit2]
-FileName=src\Pilha.cpp
+FileName=..\..\..\..\..\temp\estrutura-de-dados-p1\Estrutura-De-Dados-P1\src\Pilha.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=src\Pilha.h
+FileName=..\..\..\..\..\temp\estrutura-de-dados-p1\Estrutura-De-Dados-P1\src\Pilha.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=src\Programa.cpp
+FileName=..\..\..\..\..\temp\estrutura-de-dados-p1\Estrutura-De-Dados-P1\src\Programa.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -91,7 +91,27 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=src\Programa.h
+FileName=..\..\..\..\..\temp\estrutura-de-dados-p1\Estrutura-De-Dados-P1\src\Programa.h
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit6]
+FileName=src\Calculadora.cpp
+CompileCpp=1
+Folder=
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit7]
+FileName=src\Calculadora.h
 CompileCpp=1
 Folder=
 Compile=1

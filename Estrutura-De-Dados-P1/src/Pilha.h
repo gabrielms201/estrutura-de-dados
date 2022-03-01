@@ -15,7 +15,7 @@ using namespace std;
 
 // Tipo e tamanho da pilha
 const int TAM_PILHA = 10;
-typedef int TIPO;
+typedef char TIPO;
 
 // Class Pilha
 class Pilha 
@@ -29,7 +29,6 @@ public:
 	bool IsFull();
 	int Size();
 	void Print();
-	
 private: 
 	int _topo;
 	TIPO _pilha[TAM_PILHA];

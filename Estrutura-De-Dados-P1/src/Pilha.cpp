@@ -15,7 +15,7 @@ void Pilha::Init()
 
 bool Pilha::IsEmpty()
 {
-	if (_topo == -1) 
+	if (_topo == -1)
 	{
 		return true;
 	}
