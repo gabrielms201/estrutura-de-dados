@@ -9,8 +9,7 @@ Ricardo Gabriel Marques dos Santos Ruiz | TIA: 32134908
 #include "Programa.h"
 void sample()
 {
-	Pilha pilha = Pilha();
-	pilha.Init();
+	Pilha<int, 10> pilha = Pilha<int, 10>();
 	// Deve popular a pilha
 	pilha.Push(10);
 	pilha.Push(9);
@@ -47,14 +46,15 @@ int main()
 	//sample();
 	string infix_expression, postfix_expression;
 	int ch;
-	do 
+	do
 	{
 		cout << " Coloque a notacao infixa: ";
 		cin >> infix_expression;
-		postfix_expression = Calculadora::Convert(infix_expression);
+		CalculadoraDePilha<int, 100> calculadoraDePilha = CalculadoraDePilha<int, 100>();
+		postfix_expression = calculadoraDePilha.Convert(infix_expression);
 		cout << "\n Sua notacao infixa eh: " << infix_expression;
 		cout << "\n\n A notacao posfixa eh: " << postfix_expression << "\n";
-		cout << "\n \t Quer inserir outra notacao infixa (1/ 0)\n?";
+		cout << "\n \t Quer inserir outra notacao infixa (1 / 0)\n?";
 		cin >> ch;
 
 	} while (ch == 1);

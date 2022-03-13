@@ -18,11 +18,9 @@ add_executable("${PROJECT_NAME}")
 target_sources("${PROJECT_NAME}" PRIVATE
     "src/Programa.cpp"
     "src/Programa.h"
-    "src/Pilha.cpp"
     "src/Pilha.h"
     "src/Errors.h"
-    "src/Calculadora.cpp"
-    "src/Calculadora.h"
+    "src/CalculadoraDePilha.h"
 )
 install(TARGETS "${PROJECT_NAME}" DESTINATION bin)
 
