@@ -1,0 +1,4 @@
+C:/temp/estrutura-de-dados-p1/Estrutura-De-Dados-P1/build/CMakeFiles/Estrutura-De-Dados-P1.dir
+C:/temp/estrutura-de-dados-p1/Estrutura-De-Dados-P1/build/CMakeFiles/INSTALL.dir
+C:/temp/estrutura-de-dados-p1/Estrutura-De-Dados-P1/build/CMakeFiles/ALL_BUILD.dir
+C:/temp/estrutura-de-dados-p1/Estrutura-De-Dados-P1/build/CMakeFiles/ZERO_CHECK.dir
