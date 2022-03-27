@@ -29,19 +29,7 @@ public:
 template<class TIPO, unsigned int TAMANHO_PILHA>
 inline bool CalculadoraDePilha<TIPO, TAMANHO_PILHA>::Operador(char ch)
 {
-	char operadores[5] =
-	{
-		'*',
-		'/',
-		'+',
-		'-',
-		'^'
-	};
-	// Ve se o operador passado como parâmetro está de acordo com os operadores desejados
-	// Para encontrar, é passado o primeiro e último elementos. 
-	// Se a função encontrou, a função retorna o último valor, ou seja, 
-	// se o valor retornado for diferente do último valor, então não encontrou o elemento.
-	if (find(begin(operadores), end(operadores), ch) != end(operadores))
+	if (ch == '*' || ch == '/' || ch == '+' || ch == '-' || ch == '^')
 		return true;
 	return false;
 }
