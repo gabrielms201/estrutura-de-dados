@@ -98,7 +98,6 @@ int main()
 	
 	cout << endl << endl << endl;
 	
-	string expressaoPosFixa = "";
 	string expressaoFinal = "";
 	string x1 = "";
 	
