@@ -378,3 +378,7 @@ MigrationBackup/
 Estrutura-De-Dados-P1/projeto-ATUAL/build/
 Estrutura-De-Dados-P1/projeto-FAIL/build/
 
+build*
+.idea
+cmake-build-debug
+
