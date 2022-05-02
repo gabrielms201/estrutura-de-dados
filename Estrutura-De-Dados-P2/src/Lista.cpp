@@ -52,15 +52,13 @@ bool Lista::Insert(TYPE &data)
     if (IsEmpty())
     {
         _head = node;
+        _tail = node;
         _size++;
         return true;
     }
-    Node* ptr = _head;
-    while (ptr->GetNextNode() != nullptr)
-    {
-        ptr = ptr->GetNextNode();
-    }
+    Node* ptr = _tail;
     ptr->SetNextNode(node);
+    _tail = node;
     _size++;
     return true;
 }
