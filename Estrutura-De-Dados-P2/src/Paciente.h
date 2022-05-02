@@ -1,113 +1,129 @@
 #ifndef PACIENTE_H
 #define PACIENTE_H
 
+#include <ostream>
+
 class Paciente
 {
 public:
+    friend std::ostream &operator<<(std::ostream &os, const Paciente &paciente);
+
+    // Construtores
+    Paciente(unsigned short sexo, unsigned short tipoPaciente, unsigned short intubado, unsigned short pneumonia,
+             unsigned short idade, unsigned short gravidez, unsigned short diabetes, unsigned short copd,
+             unsigned short asma, unsigned short imunossupressao, unsigned short hipertensao,
+             unsigned short outrasDoencas, unsigned short cardiovascular, unsigned short obesidade, unsigned short irc,
+             unsigned short fumante, unsigned short outroCaso, unsigned short testeCovid, unsigned short icu,
+             unsigned short obito);
+
+    Paciente();
+
     // Getters
-    unsigned short getSexo() const { return _Sexo; }
+    unsigned short getSexo() const { return _sexo; }
 
-    unsigned short getTipoPaciente() const { return _TipoPaciente; }
+    bool operator==(const Paciente &p) const;
 
-    unsigned short getIntubado() const { return _Intubado; }
+    bool operator!=(const Paciente &p) const;
 
-    unsigned short getPneumonia() const { return _Pneumonia; }
+    unsigned short getTipoPaciente() const { return _tipoPaciente; }
 
-    unsigned short getIdade() const { return _Idade; }
+    unsigned short getIntubado() const { return _intubado; }
 
-    unsigned short getGravidez() const { return _Gravidez; }
+    unsigned short getPneumonia() const { return _pneumonia; }
 
-    unsigned short getDiabetes() const { return _Diabetes; }
+    unsigned short getIdade() const { return _idade; }
 
-    unsigned short getCopd() const { return _Copd; }
+    unsigned short getGravidez() const { return _gravidez; }
 
-    unsigned short getAsma() const { return _Asma; }
+    unsigned short getDiabetes() const { return _diabetes; }
 
-    unsigned short getImunossupressao() const { return _Imunossupressao; }
+    unsigned short getCopd() const { return _copd; }
 
-    unsigned short getHipertensao() const { return _Hipertensao; }
+    unsigned short getAsma() const { return _asma; }
 
-    unsigned short getOutrasDoencas() const { return _OutrasDoencas; }
+    unsigned short getImunossupressao() const { return _imunossupressao; }
 
-    unsigned short getCardiovascular() const { return _Cardiovascular;}
+    unsigned short getHipertensao() const { return _hipertensao; }
 
-    unsigned short getObesidade() const { return _Obesidade; }
+    unsigned short getOutrasDoencas() const { return _outrasDoencas; }
 
-    unsigned short getIrc() const { return _Irc; }
+    unsigned short getCardiovascular() const { return _cardiovascular;}
 
-    unsigned short getFumante() const { return _Fumante; }
+    unsigned short getObesidade() const { return _obesidade; }
 
-    unsigned short getOutroCaso() const { return _OutroCaso; }
+    unsigned short getIrc() const { return _irc; }
 
-    unsigned short getTesteCovid() const { return _TesteCovid; }
+    unsigned short getFumante() const { return _fumante; }
 
-    unsigned short getIcu() const { return _Icu; }
+    unsigned short getOutroCaso() const { return _outroCaso; }
 
-    unsigned short getObito() const { return _Obito; }
+    unsigned short getTesteCovid() const { return _testeCovid; }
+
+    unsigned short getIcu() const { return _icu; }
+
+    unsigned short getObito() const { return _obito; }
 
     // Setters
-    void setSexo(unsigned short sexo) { _Sexo = sexo; }
+    void setSexo(unsigned short sexo) { _sexo = sexo; }
 
-    void setTipoPaciente(unsigned short tipoPaciente) { _TipoPaciente = tipoPaciente; }
+    void setTipoPaciente(unsigned short tipoPaciente) { _tipoPaciente = tipoPaciente; }
 
-    void setIntubado(unsigned short intubado) { _Intubado = intubado; }
+    void setIntubado(unsigned short intubado) { _intubado = intubado; }
 
-    void setPneumonia(unsigned short pneumonia) { _Pneumonia = pneumonia; }
+    void setPneumonia(unsigned short pneumonia) { _pneumonia = pneumonia; }
 
-    void setIdade(unsigned short idade) { _Idade = idade; }
+    void setIdade(unsigned short idade) { _idade = idade; }
 
-    void setGravidez(unsigned short gravidez) { _Gravidez = gravidez; }
+    void setGravidez(unsigned short gravidez) { _gravidez = gravidez; }
 
-    void setDiabetes(unsigned short diabetes) { _Diabetes = diabetes; }
+    void setDiabetes(unsigned short diabetes) { _diabetes = diabetes; }
 
-    void setCopd(unsigned short copd) { _Copd = copd; }
+    void setCopd(unsigned short copd) { _copd = copd; }
 
-    void setAsma(unsigned short asma) { _Asma = asma; }
+    void setAsma(unsigned short asma) { _asma = asma; }
 
-    void setImunossupressao(unsigned short imunossupressao) { _Imunossupressao = imunossupressao; }
+    void setImunossupressao(unsigned short imunossupressao) { _imunossupressao = imunossupressao; }
 
-    void setHipertensao(unsigned short hipertensao) { _Hipertensao = hipertensao; }
+    void setHipertensao(unsigned short hipertensao) { _hipertensao = hipertensao; }
 
-    void setOutrasDoencas(unsigned short outrasDoencas) { _OutrasDoencas = outrasDoencas; }
+    void setOutrasDoencas(unsigned short outrasDoencas) { _outrasDoencas = outrasDoencas; }
 
-    void setCardiovascular(unsigned short cardiovascular) { _Cardiovascular = cardiovascular; }
+    void setCardiovascular(unsigned short cardiovascular) { _cardiovascular = cardiovascular; }
 
-    void setObesidade(unsigned short obesidade) { _Obesidade = obesidade; }
+    void setObesidade(unsigned short obesidade) { _obesidade = obesidade; }
 
-    void setIrc(unsigned short irc) { _Irc = irc; }
+    void setIrc(unsigned short irc) { _irc = irc; }
 
-    void setFumante(unsigned short fumante) { _Fumante = fumante; }
+    void setFumante(unsigned short fumante) { _fumante = fumante; }
 
-    void setOutroCaso(unsigned short outroCaso) { _OutroCaso = outroCaso; }
+    void setOutroCaso(unsigned short outroCaso) { _outroCaso = outroCaso; }
 
-    void setTesteCovid(unsigned short testeCovid) { _TesteCovid = testeCovid; }
+    void setTesteCovid(unsigned short testeCovid) { _testeCovid = testeCovid; }
 
-    void setIcu(unsigned short icu) { _Icu = icu; }
+    void setIcu(unsigned short icu) { _icu = icu; }
 
-    void setObito(unsigned short obito) { _Obito = obito; }
-
-
+    void setObito(unsigned short obito) { _obito = obito; }
 private:
-    unsigned short _Sexo;
-    unsigned short _TipoPaciente;
-    unsigned short _Intubado;
-    unsigned short _Pneumonia;
-    unsigned short _Idade;
-    unsigned short _Gravidez;
-    unsigned short _Diabetes;
-    unsigned short _Copd;
-    unsigned short _Asma;
-    unsigned short _Imunossupressao;
-    unsigned short _Hipertensao;
-    unsigned short _OutrasDoencas;
-    unsigned short _Cardiovascular;
-    unsigned short _Obesidade;
-    unsigned short _Irc;
-    unsigned short _Fumante;
-    unsigned short _OutroCaso;
-    unsigned short _TesteCovid;
-    unsigned short _Icu;
-    unsigned short _Obito;
+    unsigned short _sexo;
+    unsigned short _tipoPaciente;
+    unsigned short _intubado;
+    unsigned short _pneumonia;
+    unsigned short _idade;
+    unsigned short _gravidez;
+    unsigned short _diabetes;
+    unsigned short _copd;
+    unsigned short _asma;
+    unsigned short _imunossupressao;
+    unsigned short _hipertensao;
+    unsigned short _outrasDoencas;
+    unsigned short _cardiovascular;
+    unsigned short _obesidade;
+    unsigned short _irc;
+    unsigned short _fumante;
+    unsigned short _outroCaso;
+    unsigned short _testeCovid;
+    unsigned short _icu;
+    unsigned short _obito;
 
 };
 

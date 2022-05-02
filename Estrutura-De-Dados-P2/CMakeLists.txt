@@ -9,4 +9,5 @@ add_executable(Estrutura_De_Dados_P2
         src/Lista.h
         src/Paciente.cpp
         src/Paciente.h
+        src/Fila.h
         )
