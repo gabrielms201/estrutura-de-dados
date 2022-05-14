@@ -1,5 +1,6 @@
 #include "Lista.h"
 
+
 // No
 Node::Node(TYPE& data, Node *nextNode) : _data(data), _nextNode(nextNode)
 {}
@@ -45,7 +46,7 @@ bool Lista::Insert(TYPE &data)
 {
     if (IsFull())
     {
-        std::cerr << "Impossivel adicionar: pilha cheia. Tamanho: " << _size << std::endl;
+        cerr << "Impossivel adicionar: pilha cheia. Tamanho: " << _size << endl;
         return false;
     }
     Node* node = new Node(data, nullptr);
@@ -157,8 +158,8 @@ TYPE &Lista::FindByPosition(unsigned int position) const
         ptr = ptr->GetNextNode();
     } while (ptr != _head);
     // Dado não encontrado
-    std::string str = "Dado nao encontrada na posicao: " + std::to_string(position);
-    throw std::range_error(str);
+    string str = "Dado nao encontrada na posicao: " + to_string(position);
+    throw range_error(str);
 }
 
 unsigned int Lista::FindPosition(TYPE &data) const
@@ -175,20 +176,20 @@ unsigned int Lista::FindPosition(TYPE &data) const
         ptr = ptr->GetNextNode();
     } while (ptr != _head);
     // Dado nao encontrado
-    std::string str = "Dado nao encontrado";
-    throw std::range_error(str);
+    string str = "Dado nao encontrado";
+    throw range_error(str);
 }
 
-std::string Lista::ToString() const
+string Lista::ToString() const
 {
     if (IsEmpty())
     {
         return "null";
     }
-    std::stringstream ss;
+    stringstream ss;
     Node* ptr = _head;
     // Se tiver mais de um elemento
-    while (ptr->GetNextNode() != _head)
+    while (ptr->GetNextNode() != nullptr)
     {
         ss << ptr->GetData();
         ss << ";";

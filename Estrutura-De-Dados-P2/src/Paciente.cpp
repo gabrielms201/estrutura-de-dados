@@ -49,18 +49,27 @@ bool Paciente::operator!=(const Paciente &p) const
 Paciente::Paciente()
 {}
 
-std::ostream &operator<<(std::ostream &os, const Paciente &paciente)
+ostream &operator<<(ostream &os, const Paciente &paciente)
 {
-    os << "Sexo: " << paciente._sexo << " TipoPaciente: " << paciente._tipoPaciente << " Intubado: "
-       << paciente._intubado << " Pneumonia: " << paciente._pneumonia << " Idade: " << paciente._idade
-       << " Gravidez: " << paciente._gravidez << " Diabetes: " << paciente._diabetes << " Copd: " << paciente._copd
-       << " Asma: " << paciente._asma << " Imunossupressao: " << paciente._imunossupressao << " Hipertensao: "
-       << paciente._hipertensao << " OutrasDoencas: " << paciente._outrasDoencas << " Cardiovascular: "
-       << paciente._cardiovascular << " Obesidade: " << paciente._obesidade << " Irc: " << paciente._irc
-       << " Fumante: " << paciente._fumante << " OutroCaso: " << paciente._outroCaso << " TesteCovid: "
-       << paciente._testeCovid << " Icu: " << paciente._icu << " Obito: " << paciente._obito;
+    os << "Sexo: " << paciente._sexo << endl
+       << "TipoPaciente: " << paciente._tipoPaciente << endl 
+       << "Intubado: " << paciente._intubado << endl
+       << "Pneumonia: " << paciente._pneumonia << endl 
+       << "Idade: " << paciente._idade << endl
+       << "Gravidez: " << paciente._gravidez << endl
+       << "Diabetes: " << paciente._diabetes << endl
+       << "Copd: " << paciente._copd << endl
+       << "Asma: " << paciente._asma << endl
+       << "Imunossupressao: " << paciente._imunossupressao << endl
+       << "Hipertensao: " << paciente._hipertensao << endl
+       << "OutrasDoencas: " << paciente._outrasDoencas << endl
+       << "Cardiovascular: " << paciente._cardiovascular << endl
+       << "Obesidade: " << paciente._obesidade << endl
+       << "Irc: " << paciente._irc << endl
+       << "Fumante: " << paciente._fumante << endl
+       << "OutroCaso: " << paciente._outroCaso << endl
+       << "TesteCovid: " << paciente._testeCovid << endl
+       << "Icu: " << paciente._icu << endl
+       << "Obito: " << paciente._obito;
     return os;
 }
-
-
-

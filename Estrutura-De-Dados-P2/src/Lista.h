@@ -11,6 +11,7 @@
 #include <iostream>
 #include <sstream>
 
+using namespace std;
 typedef Paciente TYPE;
 // No
 class Node
@@ -42,13 +43,13 @@ public:
     TYPE& FindByPosition(unsigned int position) const;
     unsigned int FindPosition(TYPE& data) const;
     unsigned int GetSize() const { return _size; }
-    std::string ToString() const;
+    string ToString() const;
 private:
     unsigned int _size;
     Node* _head;
     Node* _tail;
 };
-inline std::ostream& operator <<(std::ostream& str, const Lista& lista)
+inline ostream& operator <<(ostream& str, const Lista& lista)
 {
     return str << lista.ToString();
 }

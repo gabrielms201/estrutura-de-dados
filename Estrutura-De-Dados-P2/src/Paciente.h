@@ -3,10 +3,11 @@
 
 #include <ostream>
 
+using namespace std;
 class Paciente
 {
 public:
-    friend std::ostream &operator<<(std::ostream &os, const Paciente &paciente);
+    friend ostream &operator<<(ostream &os, const Paciente &paciente);
 
     // Construtores
     Paciente(unsigned short sexo, unsigned short tipoPaciente, unsigned short intubado, unsigned short pneumonia,
@@ -20,10 +21,6 @@ public:
 
     // Getters
     unsigned short getSexo() const { return _sexo; }
-
-    bool operator==(const Paciente &p) const;
-
-    bool operator!=(const Paciente &p) const;
 
     unsigned short getTipoPaciente() const { return _tipoPaciente; }
 
@@ -103,6 +100,12 @@ public:
     void setIcu(unsigned short icu) { _icu = icu; }
 
     void setObito(unsigned short obito) { _obito = obito; }
+
+    // Comparators
+    bool operator==(const Paciente& p) const;
+
+    bool operator!=(const Paciente& p) const;
+
 private:
     unsigned short _sexo;
     unsigned short _tipoPaciente;
