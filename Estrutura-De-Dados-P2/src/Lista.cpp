@@ -1,3 +1,12 @@
+/*
+ESTRUTURA DE DADOS - P2 - Lista Encadeada
+  Grupo:
+    Caio Cezar Oliveira Filardi do Carmo        |   TIA: 31891365   |
+    Mayara Meneghetti Honda	                    |   TIA: 32152280   |
+    Paulo Henrique Braga Cechinel               |   TIA: 32151128   |
+    Ricardo Gabriel Marques dos Santos Ruiz     |   TIA: 32134908   |
+*/
+
 #include "Lista.h"
 
 
@@ -156,8 +165,8 @@ TYPE &Lista::FindByPosition(unsigned int position) const
         }
         count++;
         ptr = ptr->GetNextNode();
-    } while (ptr != _head);
-    // Dado não encontrado
+    } while (ptr != nullptr);
+    // Dado nao encontrado
     string str = "Dado nao encontrada na posicao: " + to_string(position);
     throw range_error(str);
 }
@@ -174,7 +183,7 @@ unsigned int Lista::FindPosition(TYPE &data) const
         }
         count++;
         ptr = ptr->GetNextNode();
-    } while (ptr != _head);
+    } while (ptr != nullptr);
     // Dado nao encontrado
     string str = "Dado nao encontrado";
     throw range_error(str);
@@ -198,4 +207,74 @@ string Lista::ToString() const
     // Para o ultimo no:
     ss << ptr->GetData();
     return ss.str();
+}
+// Custom Querys
+unsigned int Lista::GetDeadQuantity() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getObito() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Encontra a quantidade de mortos que fumavam
+unsigned int Lista::GetDeadSmokers() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if (data.getObito() == 1 && data.getFumante() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Encontra a quantidade de Obesos que morreram
+unsigned int Lista::GetDeadObeses() const
+{
+    Node * ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if (data.getObito() == 1 && data.getObesidade() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Encontra a quantidade de Mulheres Gravidas abaixo de 25 anos que fumavam
+unsigned int Lista::GetYoungSmokerPregnantWoman() const
+{
+    Node * ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if (data.getSexo() == 1 && data.getIdade() <= 25 && data.getFumante() == 1 && data.getGravidez() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Encontra a quantidade de Mulheres Gravidas abaixo de 25 anos que fumavam e morreram
+unsigned int Lista::GetDeadYoungSmokerPregnantWoman() const
+{
+    Node * ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if (data.getObito() == 1 && data.getSexo() == 1 && data.getIdade() <= 25 && data.getFumante() == 1 && data.getGravidez() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
 }

@@ -1,3 +1,12 @@
+/*
+ESTRUTURA DE DADOS - P2 - Lista Encadeada
+  Grupo:
+    Caio Cezar Oliveira Filardi do Carmo        |   TIA: 31891365   |
+    Mayara Meneghetti Honda	                    |   TIA: 32152280   |
+    Paulo Henrique Braga Cechinel               |   TIA: 32151128   |
+    Ricardo Gabriel Marques dos Santos Ruiz     |   TIA: 32134908   |
+*/
+
 #ifndef PACIENTE_H
 #define PACIENTE_H
 
@@ -127,7 +136,6 @@ private:
     unsigned short _testeCovid;
     unsigned short _icu;
     unsigned short _obito;
-
 };
 
 #endif

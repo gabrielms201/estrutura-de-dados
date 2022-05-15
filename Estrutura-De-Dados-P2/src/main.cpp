@@ -1,15 +1,12 @@
-#include <iostream>
-#include "rapidcsv.h"
-#include "Paciente.h"
-#include "Fila.h"
-#include "Lista.h"
-#include <string>
-#include <fstream>
-#include <sstream>
-#include <iostream>
-
-
-using namespace std;
+/*
+ESTRUTURA DE DADOS - P2 - Lista Encadeada
+  Grupo:
+    Caio Cezar Oliveira Filardi do Carmo        |   TIA: 31891365   |
+    Mayara Meneghetti Honda	                    |   TIA: 32152280   |
+    Paulo Henrique Braga Cechinel               |   TIA: 32151128   |
+    Ricardo Gabriel Marques dos Santos Ruiz     |   TIA: 32134908   |
+*/
+#include "main.h"
 
 void putContentIntoList(string filePath, Lista& list)
 {
@@ -28,7 +25,7 @@ void putContentIntoList(string filePath, Lista& list)
     getline(ss, str);
     // Define o delimitador com base se encontrou "," ou ";"
     // Como o C++ nao retorna um valor bool no metodo "find", e sim a posicao da string passada,
-    // precisamos verificar se o valor retornado é diferente do tamanho maximo que uma string pode ter
+    // precisamos verificar se o valor retornado ï¿½ diferente do tamanho maximo que uma string pode ter
     char delimiter = str.find(',') != string::npos ? ',' : ';';
     // Para cada linha, ele vai seguir a logica e adicionar um paciente na lista
     while (getline(ss, str))
@@ -62,28 +59,60 @@ void putContentIntoList(string filePath, Lista& list)
         unsigned short testeCovid = queue.dequeue();
         unsigned short icu = queue.dequeue();
         unsigned short obito = queue.dequeue();
-
+        // Assim que tivermos todos os atributos armazenados, instanciar um objeto "Paciente"
         Paciente paciente = Paciente(sexo, tipoPaciente, intubado, pneumonia, idade, gravidez, diabetes,
             copd, asma, imunossupressao, hipertensao, outrasDoencas, cardiovascular, obesidade, irc,
             fumante, outroCaso, testeCovid, icu, obito);
-
+        // Adiciona o paciente na lista
         list.Insert(paciente);
     }
+    // Fecha o arquivo, para evitar problemas
     input_file.close();
 }
 
-int main()
+int main(int argc, char* argv[])
 {
-    string documentFolder = "C:\\temp\\estrutura-de-dados-p1\\Estrutura-De-Dados-P2\\data";
+    string documentFolder = argc > 1 ? argv[1] : ".\\";
     string documentName = "df_covid.csv";
     string finalPath = documentFolder + "\\" + documentName;
 
-    Lista list = Lista();
-    putContentIntoList(finalPath, list);
-
-    cout << "Hello, World!" << endl;
-
-    cout << list;
+    while (true)
+    {
+        menu(finalPath);
+    }
     
-    return 0;
+}
+
+
+void menu(string filePath)
+{
+    Lista list = Lista();
+    putContentIntoList(filePath, list);
+
+    int opcao;
+    cout << "Digite a opcao: ";
+    cin >> opcao;
+    switch(opcao)
+    {
+        case 1:
+            cout << "Quantidade de Mortos: " << endl;
+            cout << list.GetDeadQuantity() << endl;
+            break;
+        case 2:
+            cout << "Quantidade de Fumantes Mortos: " << endl;
+            cout << list.GetDeadSmokers() << endl;
+            break;
+        case 3:
+            cout << "Quantidade de Obesos Mortos: " << endl;
+            cout << list.GetDeadObeses() << endl;
+            break;
+        case 4:
+            cout << "Quantidade de Gravidas Jovens (ate 25 anos) Fumantes: ";
+            cout << list.GetYoungSmokerPregnantWoman() << endl;
+            cout << "Quantidade de Gravidas Jovens Fumantes Mortas: ";
+            cout << list.GetDeadYoungSmokerPregnantWoman() << endl;
+            break;
+        default:
+            cout << "Opcao Invalida!";
+    }
 }

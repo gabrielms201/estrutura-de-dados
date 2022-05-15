@@ -1,5 +1,14 @@
-#include "Paciente.h"
+/*
+ESTRUTURA DE DADOS - P2 - Lista Encadeada
+  Grupo:
+    Caio Cezar Oliveira Filardi do Carmo        |   TIA: 31891365   |
+    Mayara Meneghetti Honda	                    |   TIA: 32152280   |
+    Paulo Henrique Braga Cechinel               |   TIA: 32151128   |
+    Ricardo Gabriel Marques dos Santos Ruiz     |   TIA: 32134908   |
+*/
 
+#include "Paciente.h"
+// Construtor
 Paciente::Paciente(unsigned short sexo, unsigned short tipoPaciente, unsigned short intubado, unsigned short pneumonia,
                    unsigned short idade, unsigned short gravidez, unsigned short diabetes, unsigned short copd,
                    unsigned short asma, unsigned short imunossupressao, unsigned short hipertensao,
@@ -16,7 +25,7 @@ Paciente::Paciente(unsigned short sexo, unsigned short tipoPaciente, unsigned sh
                      _irc(irc), _fumante(fumante), _outroCaso(outroCaso),
                      _testeCovid(testeCovid), _icu(icu), _obito(obito)
 {}
-
+// Faz Overload do operador de igualdade para verificar se um objeto eh identico ao outro
 bool Paciente::operator==(const Paciente &p) const
 {
     return _sexo == p._sexo &&
@@ -40,7 +49,7 @@ bool Paciente::operator==(const Paciente &p) const
            _icu == p._icu &&
            _obito == p._obito;
 }
-
+// Faz Overload do operador de nao igualdade para verificar se um objeto nao eh identico ao outro
 bool Paciente::operator!=(const Paciente &p) const
 {
     return !(p == *this);
@@ -48,7 +57,7 @@ bool Paciente::operator!=(const Paciente &p) const
 
 Paciente::Paciente()
 {}
-
+// Faz Overload do operador de bitwise para quando realizar o print na tela, aparecer todos os atributos da lista
 ostream &operator<<(ostream &os, const Paciente &paciente)
 {
     os << "Sexo: " << paciente._sexo << endl
