@@ -73,11 +73,28 @@ public:
 	// Men - Icu
     unsigned int GetMenIcuCovidDead() const;
 	unsigned int GetMenIcuCovidNotDead() const;    
-	unsigned int GetMenIcuNotCovidDead() const;	
-	unsigned int GetMenIcuNotCovidNotDead() const;		
-		
-		
-	
+	unsigned int GetMenIcuNotCovidDead() const;
+    unsigned int GetMenIcuNotCovidNotDead() const;
+
+
+    // Woman - Obese
+    unsigned int GetWomanObeseCovidDead() const;
+    unsigned int GetWomanObeseCovidNotDead() const;
+    unsigned int GetWomanObeseNotCovidDead() const;
+    unsigned int GetWomanObeseNotCovidNotDead() const;
+
+    // Woman - Diabetic
+    unsigned int GetWomanDiabeticCovidDead() const;
+    unsigned int GetWomanDiabeticCovidNotDead() const;
+    unsigned int GetWomanDiabeticNotCovidNotDead() const;
+    unsigned int GetWomanDiabeticNotCovidDead() const;
+
+    // Woman - Icu
+    unsigned int GetWomanIcuCovidDead() const;
+    unsigned int GetWomanIcuCovidNotDead() const;
+    unsigned int GetWomanIcuNotCovidNotDead() const;
+    unsigned int GetWomanIcuNotCovidDead() const;
+			
 private:
     unsigned int _size;
     Node* _head;

@@ -115,7 +115,72 @@ void testes(string filePath)
 	Lista list = Lista();
     putContentIntoList(filePath, list);
 
+
+    // Homem
+
+    // Homem - Obeso
+    cout << "GetMenObeseCovidDead: ";
 	cout << list.GetMenObeseCovidDead() << endl; //  403 v
+    cout << "GetMenObeseCovidNotDead: ";
 	cout << list.GetMenObeseCovidNotDead() << endl; // 2353 v
-	cout << list.GetMenObeseNotCovidDead() << endl; // 108 v	
+    cout << "GetMenObeseNotCovidDead: ";
+	cout << list.GetMenObeseNotCovidDead() << endl; // 108 v
+    cout << "GetMenObeseNotCovidNotDead: ";
+    cout << list.GetMenObeseNotCovidNotDead() << endl;
+
+
+    // Homem - Diabetico
+    cout << "GetMenDiabeticCovidDead: ";
+    cout << list.GetMenDiabeticCovidDead() << endl;
+    cout << "GetMenDiabeticCovidNotDead: ";
+    cout << list.GetMenDiabeticCovidNotDead() << endl;
+    cout << "GetMenDiabeticNotCovidDead: ";
+    cout << list.GetMenDiabeticNotCovidDead() << endl;
+    cout << "GetMenDiabeticNotCovidNotDead: ";
+    cout << list.GetMenDiabeticNotCovidNotDead() << endl;
+
+    // Homem - ICU
+    cout << "GetMenIcuCovidDead: ";
+    cout << list.GetMenIcuCovidDead() << endl;
+    cout << "GetMenIcuCovidNotDead: ";
+    cout << list.GetMenIcuCovidNotDead() << endl;
+    cout << "GetMenIcuNotCovidDead: ";
+    cout << list.GetMenIcuNotCovidDead() << endl;
+    cout << "GetMenIcuNotCovidNotDead: ";
+    cout << list.GetMenIcuNotCovidNotDead() << endl;
+
+    // Mulher
+
+    // Mulher - Obeso
+    cout << "GetWomanObeseCovidDead: ";
+    cout << list.GetWomanObeseCovidDead() << endl;
+    cout << "GetWomanObeseCovidNotDead: ";
+    cout << list.GetWomanObeseCovidNotDead() << endl;
+    cout << "GetWomanObeseNotCovidDead: ";
+    cout << list.GetWomanObeseNotCovidDead() << endl;
+    cout << "GetWomanObeseNotCovidNotDead: ";
+    cout << list.GetWomanObeseNotCovidNotDead() << endl;
+
+
+    // Mulher - Diabetico
+    cout << "GetWomanDiabeticCovidDead: ";
+    cout << list.GetWomanDiabeticCovidDead() << endl;
+    cout << "GetWomanDiabeticCovidNotDead: ";
+    cout << list.GetWomanDiabeticCovidNotDead() << endl;
+    cout << "GetWomanDiabeticNotCovidDead: ";
+    cout << list.GetWomanDiabeticNotCovidDead() << endl;
+    cout << "GetWomanDiabeticNotCovidNotDead: ";
+    cout << list.GetWomanDiabeticNotCovidNotDead() << endl;
+
+    // Mulher - ICU
+    cout << "GetWomanIcuCovidDead: ";
+    cout << list.GetWomanIcuCovidDead() << endl;
+    cout << "GetWomanIcuCovidNotDead";
+    cout << list.GetWomanIcuCovidNotDead() << endl;
+    cout << "GetWomanIcuNotCovidDead: ";
+    cout << list.GetWomanIcuNotCovidDead() << endl;
+    cout << "GetWomanIcuNotCovidNotDead";
+    cout << list.GetWomanIcuNotCovidNotDead() << endl;
+
+
 }
