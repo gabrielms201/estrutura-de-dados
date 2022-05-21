@@ -76,10 +76,11 @@ int main(int argc, char* argv[])
     string documentName = "df_covid.csv";
     string finalPath = documentFolder + "\\" + documentName;
 
-    while (true)
-    {
-        menu(finalPath);
-    }
+    //while (true)
+    //{
+        //menu(finalPath);
+    //}
+    testes(finalPath);
     
 }
 
@@ -99,20 +100,22 @@ void menu(string filePath)
             cout << list.GetDeadQuantity() << endl;
             break;
         case 2:
-            cout << "Quantidade de Fumantes Mortos: " << endl;
-            cout << list.GetDeadSmokers() << endl;
             break;
         case 3:
-            cout << "Quantidade de Obesos Mortos: " << endl;
-            cout << list.GetDeadObeses() << endl;
             break;
         case 4:
-            cout << "Quantidade de Gravidas Jovens (ate 25 anos) Fumantes: ";
-            cout << list.GetYoungSmokerPregnantWoman() << endl;
-            cout << "Quantidade de Gravidas Jovens Fumantes Mortas: ";
-            cout << list.GetDeadYoungSmokerPregnantWoman() << endl;
             break;
         default:
             cout << "Opcao Invalida!";
     }
+}
+
+void testes(string filePath)
+{
+	Lista list = Lista();
+    putContentIntoList(filePath, list);
+
+	cout << list.GetMenObeseCovidDead() << endl; //  403 v
+	cout << list.GetMenObeseCovidNotDead() << endl; // 2353 v
+	cout << list.GetMenObeseNotCovidDead() << endl; // 108 v	
 }

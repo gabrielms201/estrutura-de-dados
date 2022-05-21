@@ -55,10 +55,29 @@ public:
     string ToString() const;
     // Custom Query
     unsigned int GetDeadQuantity() const;                   // O(n)
-    unsigned int GetDeadSmokers() const;                    // O(n)
-    unsigned int GetDeadObeses() const;                     // O(n)
-    unsigned int GetYoungSmokerPregnantWoman() const;       // O(n)
-    unsigned int GetDeadYoungSmokerPregnantWoman() const;   // O(n)
+
+    
+    
+    // Men - Obese
+    unsigned int GetMenObeseCovidDead() const;
+	unsigned int GetMenObeseCovidNotDead() const;    
+	unsigned int GetMenObeseNotCovidDead() const;	
+	unsigned int GetMenObeseNotCovidNotDead() const;		
+	
+	// Men - Diabetic
+    unsigned int GetMenDiabeticCovidDead() const;
+	unsigned int GetMenDiabeticCovidNotDead() const;    
+	unsigned int GetMenDiabeticNotCovidDead() const;	
+	unsigned int GetMenDiabeticNotCovidNotDead() const;		
+	
+	// Men - Icu
+    unsigned int GetMenIcuCovidDead() const;
+	unsigned int GetMenIcuCovidNotDead() const;    
+	unsigned int GetMenIcuNotCovidDead() const;	
+	unsigned int GetMenIcuNotCovidNotDead() const;		
+		
+		
+	
 private:
     unsigned int _size;
     Node* _head;

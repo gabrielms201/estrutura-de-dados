@@ -24,6 +24,7 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 using namespace std;
 using namespace chrono;
 
+void testes(string filePath);
 void putContentIntoList(string filePath, Lista& list);
 void menu(string filePath);
 

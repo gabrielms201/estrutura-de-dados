@@ -208,7 +208,6 @@ string Lista::ToString() const
     ss << ptr->GetData();
     return ss.str();
 }
-// Custom Querys
 unsigned int Lista::GetDeadQuantity() const
 {
     Node* ptr = _head;
@@ -222,59 +221,196 @@ unsigned int Lista::GetDeadQuantity() const
     }
     return count;
 }
-// Encontra a quantidade de mortos que fumavam
-unsigned int Lista::GetDeadSmokers() const
+
+// Homem 
+// Diabete
+// Homem - Obesidade - Covid - Morreu
+unsigned int Lista::GetMenObeseCovidDead() const
 {
     Node* ptr = _head;
     int count = 0;
     while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
     {
         TYPE data = ptr->GetData();
-        if (data.getObito() == 1 && data.getFumante() == 1)
+        if(data.getSexo() == 2 && data.getObesidade() == 1 && data.getTesteCovid() == 1 && data.getObito() == 1)
             count++;
         ptr = ptr->GetNextNode();
     }
     return count;
 }
-// Encontra a quantidade de Obesos que morreram
-unsigned int Lista::GetDeadObeses() const
+// Homem - Obesidade - Covid - N morreu
+unsigned int Lista::GetMenObeseCovidNotDead() const
 {
-    Node * ptr = _head;
+    Node* ptr = _head;
     int count = 0;
     while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
     {
         TYPE data = ptr->GetData();
-        if (data.getObito() == 1 && data.getObesidade() == 1)
+        if(data.getSexo() == 2 && data.getObesidade() == 1 && data.getTesteCovid() == 1 && data.getObito() == 0)
             count++;
         ptr = ptr->GetNextNode();
     }
     return count;
 }
-// Encontra a quantidade de Mulheres Gravidas abaixo de 25 anos que fumavam
-unsigned int Lista::GetYoungSmokerPregnantWoman() const
+// Homem - Obesidade - N Covid - Morreu
+unsigned int Lista::GetMenObeseNotCovidDead() const
 {
-    Node * ptr = _head;
+    Node* ptr = _head;
     int count = 0;
     while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
     {
         TYPE data = ptr->GetData();
-        if (data.getSexo() == 1 && data.getIdade() <= 25 && data.getFumante() == 1 && data.getGravidez() == 1)
+        if(data.getSexo() == 2 && data.getObesidade() == 1 && data.getTesteCovid() == 2 && data.getObito() == 1)
             count++;
         ptr = ptr->GetNextNode();
     }
     return count;
 }
-// Encontra a quantidade de Mulheres Gravidas abaixo de 25 anos que fumavam e morreram
-unsigned int Lista::GetDeadYoungSmokerPregnantWoman() const
+// Homem - Obesidade - N Covid - N morreu 
+unsigned int Lista::GetMenObeseNotCovidNotDead() const
 {
-    Node * ptr = _head;
+    Node* ptr = _head;
     int count = 0;
     while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
     {
         TYPE data = ptr->GetData();
-        if (data.getObito() == 1 && data.getSexo() == 1 && data.getIdade() <= 25 && data.getFumante() == 1 && data.getGravidez() == 1)
+        if(data.getSexo() == 2 && data.getObesidade() == 1 && data.getTesteCovid() == 2 && data.getObito() == 0)
             count++;
         ptr = ptr->GetNextNode();
     }
     return count;
 }
+// Diabete
+// Homem - Diabetico - Covid - Morreu
+unsigned int Lista::GetMenDiabeticCovidDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getDiabetes() == 1 && data.getTesteCovid() == 1 && data.getObito() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Homem - Diabetico - Covid - N morreu
+unsigned int Lista::GetMenDiabeticCovidNotDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getDiabetes() == 1 && data.getTesteCovid() == 1 && data.getObito() == 0)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Homem - Diabetico - N Covid - N morreu
+unsigned int Lista::GetMenDiabeticNotCovidNotDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getDiabetes() == 1 && data.getTesteCovid() == 2 && data.getObito() == 0)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+} 
+// Homem - Diabetico - N Covid - Morreu
+unsigned int Lista::GetMenDiabeticNotCovidDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getDiabetes() == 1 && data.getTesteCovid() == 2 && data.getObito() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+
+
+// ICU 
+// Homem - ICU - Covid - Morreu
+unsigned int Lista::GetMenIcuCovidDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getIcu() == 1 && data.getTesteCovid() == 1 && data.getObito() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Homem - ICU - Covid - N morreu
+unsigned int Lista::GetMenIcuCovidNotDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getIcu() == 1 && data.getTesteCovid() == 1 && data.getObito() == 0)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+// Homem - ICU - N Covid - N morreu
+unsigned int Lista::GetMenIcuNotCovidNotDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getIcu() == 1 && data.getTesteCovid() == 2 && data.getObito() == 0)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+} 
+// Homem - ICU - N Covid - Morreu
+unsigned int Lista::GetMenIcuNotCovidDead() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if(data.getSexo() == 2 && data.getIcu() == 1 && data.getTesteCovid() == 2 && data.getObito() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+
+
+// Mulheres 
+
+// Mulher - Obesidade - Covid - Morreu
+// Mulher - Obesidade - Covid - N morreu
+// Mulher - Obesidade - N Covid - Morreu
+// Mulher - Obesidade - N Covid - N morreu 
+
+// Mulher - Diabetico - Covid - Morreu
+// Mulher - Diabetico - Covid - N morreu
+// Mulher - Diabetico - N Covid - N morreu 
+// Mulher - Diabetico - N Covid - Morreu
+
+// Mulher - ICU - Covid - Morreu
+// Mulher - ICU - Covid - N morreu
+// Mulher - ICU - N Covid - N morreu 
+// Mulher - ICU - N Covid - Morreu
