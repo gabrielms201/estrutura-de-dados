@@ -175,11 +175,11 @@ void testes(string filePath)
     // Mulher - ICU
     cout << "GetWomanIcuCovidDead: ";
     cout << list.GetWomanIcuCovidDead() << endl;
-    cout << "GetWomanIcuCovidNotDead";
+    cout << "GetWomanIcuCovidNotDead: ";
     cout << list.GetWomanIcuCovidNotDead() << endl;
     cout << "GetWomanIcuNotCovidDead: ";
     cout << list.GetWomanIcuNotCovidDead() << endl;
-    cout << "GetWomanIcuNotCovidNotDead";
+    cout << "GetWomanIcuNotCovidNotDead: ";
     cout << list.GetWomanIcuNotCovidNotDead() << endl;
 
 
