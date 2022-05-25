@@ -12,7 +12,6 @@ bool g_benchmark_mode;
 
 int main(int argc, char* argv[])
 {
-
     string documentFolder = argc > 1 ? argv[1] : ".\\";
     string documentName = "df_covid.csv";
     string finalPath = documentFolder + "\\" + documentName;
@@ -31,20 +30,19 @@ int main(int argc, char* argv[])
         tp = steady_clock::now();
         milliseconds now_ms = duration_cast<milliseconds>(tp.time_since_epoch());
         double duration = (now_ms - start_ms).count() / 1000.0f; // milliseconds - seconds 
-        cout << "Tempo para carregar a lista em memoria: " << duration << "s" << endl;
+        cout << "MODO BENCHMARK: Tempo para carregar a lista em memoria: " << duration << "s" << endl;
     }
     while (true)
         menu(list);
 
 }
-
 void putContentIntoList(string filePath, Lista& list)
 {
     // Tenta abrir o arquivo
     ifstream input_file(filePath);
     if (!input_file.is_open())
     {
-        cerr << "Nao foi possivel abrir o arquivo. Caminho: " << filePath << endl;
+        cerr << "Nao foi possivel abrir o arquivo. Caminho dado: " << filePath << endl;
         abort();
     }
     // Adiciona o conteudo do buffer em uma stringstream (nao podemos utilizar string, pois estamos trabalhando com streaming)
@@ -99,12 +97,8 @@ void putContentIntoList(string filePath, Lista& list)
     // Fecha o arquivo, para evitar problemas
     input_file.close();
 }
-void testes(string filePath)
+void testes(Lista& list)
 {
-	Lista list = Lista();
-    putContentIntoList(filePath, list);
-
-
     // Homem
 
     // Homem - Obeso
@@ -170,6 +164,11 @@ void testes(string filePath)
     cout << list.GetWomanIcuNotCovidDead() << endl;
     cout << "GetWomanIcuNotCovidNotDead: ";
     cout << list.GetWomanIcuNotCovidNotDead() << endl;
+    
+    cout << "Pressione digite algo para continuar: " << endl;
+    char ch;
+    cin >> ch;
+    CLEAR_SCREAM();
 }
 void submenuComorbidade(ostringstream& opcoes)
 {
@@ -212,7 +211,7 @@ long consultar(ostringstream& opcoes, Lista& lista)
     // Homem Obeso
     switch (consulta)
     {
-    case 1111: 
+    case 1111:
         // Homem - Obeso - Positivo - Vivo : 1111
         return lista.GetMenObeseCovidNotDead();
     case 1121:
@@ -305,6 +304,7 @@ void menu(Lista& list)
     cout << "Opcao 2 - Mulheres" << endl;
     cout << "Opcao 3 - Curiosidades Morbidas" << endl;
     cout << "Opcao 4 - Sair do Programa" << endl;
+    cout << "Opcao 5 - Realizar teste com todas as consultas" << endl;
     cout << endl << "Digite a opcao desejada: ";
     cin >> opcao;
     CLEAR_SCREAM();
@@ -320,9 +320,14 @@ void menu(Lista& list)
     case 4:
         exit(0);
         break;
+    case 5:
+        testes(list);
+        return;
     default:
         cout << "Opcao Invalida!" << endl;
-        system("pause");
+        cout << "Pressione digite algo para continuar: " << endl;
+        char ch;
+        cin >> ch;
         break;
     }
     // Caso a opcao seja de uma consulta personalizada, chamar os demais menus e realizar a consulta

@@ -20,6 +20,7 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 #include <iostream>
 #include <chrono>
 
+// Macro de compilacao para identificar o sistema na hora de limpar a tela
 #ifdef WIN32 
     #define CLEAR_SCREAM() system("cls");
 #else
@@ -35,7 +36,7 @@ void submenuComorbidade(ostringstream& opcoes);
 void submenuCovid(ostringstream& opcoes);
 void submenuMorte(ostringstream& opcoes);
 long consultar(ostringstream& opcoes, Lista& lista);
-void testes(string filePath);
+void testes(Lista& list);
 void putContentIntoList(string filePath, Lista& list);
 void menu(Lista& list);
 
