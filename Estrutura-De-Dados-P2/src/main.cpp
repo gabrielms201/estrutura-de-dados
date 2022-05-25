@@ -205,93 +205,144 @@ void submenuMorte(ostringstream& opcoes)
     opcoes << opcao;
     CLEAR_SCREAM();
 }
-long consultar(ostringstream& opcoes, Lista& lista)
+KEY_AND_VALUE consultar(ostringstream& opcoes, Lista& lista)
 {
     int consulta = stoi(opcoes.str());
-
+    KEY_AND_VALUE kv;
     // Homem Obeso
     switch (consulta)
     {
     case 1111:
         // Homem - Obeso - Positivo - Vivo : 1111
-        return lista.GetMenObeseCovidNotDead();
+        kv.key = "Homens Obesos com Covid e Vivos";
+        kv.value = lista.GetMenObeseCovidNotDead();
+        break;
     case 1121:
         // Homem - Obeso - Negativo - Vivo  : 1121
-        return lista.GetMenObeseNotCovidNotDead();
+        kv.key = "Homens Obesos sem Covid e Vivos";
+        kv.value = lista.GetMenObeseNotCovidNotDead();
+        break;
     case 1112:
         // Homem - Obeso - Positivo - Morto : 1112
-        return lista.GetMenObeseCovidDead();
+        kv.key = "Homens Obesos com Covid e Mortos";
+        kv.value = lista.GetMenObeseCovidDead();
+        break;
     case 1122:
         // Homem - Obeso - Negativo - Morto : 1122
-        return lista.GetMenObeseNotCovidDead();
+        kv.key = "Homens Obesos sem covid e Mortos";
+        kv.value = lista.GetMenObeseNotCovidDead();
+        break;
     // Homem Diabetico
     case 1211:
         // Homem - Diabetico - Positivo - Vivo  :  1211
-        return lista.GetMenDiabeticCovidNotDead();
+        kv.key = "Homens Diabeticos com Covid e Vivos";
+        kv.value = lista.GetMenDiabeticCovidNotDead();
+        break;
     case 1221:
         // Homem - Diabetico - Negativo - Vivo  :  1221
-        return lista.GetMenDiabeticNotCovidNotDead();
+        kv.key = "Homens Diabeticos sem Covid e Vivos";
+        kv.value = lista.GetMenDiabeticNotCovidNotDead();
+        break;
     case 1212:
         // Homem - Diabetico - Positivo - Morto :  1212
-        return lista.GetMenDiabeticCovidDead();
+        kv.key = "Homens Diabeticos com Covid e Mortos";
+        kv.value = lista.GetMenDiabeticCovidDead();
+        break;
     case 1222:
         // Homem - Diabetico - Negativo - Morto :  1222
-        return lista.GetMenDiabeticNotCovidDead();
+        kv.key = "Homens Diabeticos sem Covid e Mortos";
+        kv.value = lista.GetMenDiabeticNotCovidDead();
+        break;
     // Homem ICU
     case 1311:
         // Homem - ICU - Positivo - Vivo  : 1311
-        return lista.GetMenIcuCovidNotDead();
+        kv.key = "Homens com ICU com Covid e Vivos";
+        kv.value = lista.GetMenIcuCovidNotDead();
+        break;
     case 1321:
         // Homem - ICU - Negativo - Vivo  : 1321
-        return lista.GetMenIcuNotCovidNotDead();
+        kv.key = "Homens com ICU sem Covid e Vivos";
+        kv.value = lista.GetMenIcuNotCovidNotDead();
+        break;
     case 1312:
         // Homem - ICU - Positivo - Morto : 1312
-        return lista.GetMenIcuCovidDead();
+        kv.key = "Homens com ICU com Covid e Mortos";
+        kv.value = lista.GetMenIcuCovidDead();
+        break;
     case 1322:
         // Homem - ICU - Negativo - Morto : 1322
-        return lista.GetMenIcuNotCovidDead();
+        kv.key = "Homens com ICU sem Covid e Mortos";
+        kv.value = lista.GetMenIcuNotCovidDead();
+        break;
     // Mulher Obeso
     case 2111:
         // Mulher - Obeso - Positivo - Vivo : 2111
-        return lista.GetWomanObeseCovidNotDead();
+        kv.key = "Mulheres Obesas com Covid e Vivas";
+        kv.value = lista.GetWomanObeseCovidNotDead();
+        break;
     case 2121:
         // Mulher - Obeso - Negativo - Vivo  : 2121
-        return lista.GetWomanObeseNotCovidNotDead();
+        kv.key = "Mulheres Obesas sem Covid e Vivas";
+        kv.value = lista.GetWomanObeseNotCovidNotDead();
+        break;
     case 2112:
         // Mulher - Obeso - Positivo - Morto : 2112
-        return lista.GetWomanObeseCovidDead();
+        kv.key = "Mulheres Obesas com Covid e Mortas";
+        kv.value = lista.GetWomanObeseCovidDead();
+        break;
     case 2122:
         // Mulher - Obeso - Negativo - Morto : 2122
-        return lista.GetWomanObeseNotCovidDead();
+        kv.key = "Mulheres Obesas sem Covid e Mortas";
+        kv.value = lista.GetWomanObeseNotCovidDead();
+        break;
     // Mulher Diabetico
     case 2211:
         // Mulher - Diabetico - Positivo - Vivo  :  2211
-        return lista.GetWomanDiabeticCovidNotDead();
+        kv.key = "Mulheres Diabeticas com Covid e Vivas";
+        kv.value = lista.GetWomanDiabeticCovidNotDead();
+        break;
     case 2221:
         // Mulher - Diabetico - Negativo - Vivo  :  2221
-        return lista.GetWomanDiabeticNotCovidNotDead();
+        kv.key = "Mulheres Diabeticas sem Covid e Vivas";
+        kv.value = lista.GetWomanDiabeticNotCovidNotDead();
+        break;
     case 2212:
         // Mulher - Diabetico - Positivo - Morto :  2212
-        return lista.GetWomanDiabeticCovidDead();
+        kv.key = "Mulheres Diabeticas com Covid e Mortas";
+        kv.value = lista.GetWomanDiabeticCovidDead();
+        break;
     case 2222:
         // Mulher - Diabetico - Negativo - Morto :  2222
-        return lista.GetWomanDiabeticNotCovidDead();
+        kv.key = "Mulheres Diabeticas sem Covid e Mortas";
+        kv.value = lista.GetWomanDiabeticNotCovidDead();
+        break;
     // Mulher ICU
     case 2311:
         // Mulher - ICU - Positivo - Vivo  : 2311
-        return lista.GetWomanIcuCovidNotDead();
+        kv.key = "Mulheres com ICU com Covid e Vivas";
+        kv.value = lista.GetWomanIcuCovidNotDead();
+        break;
     case 2321:
         // Mulher - ICU - Negativo - Vivo  : 2321
-        return lista.GetWomanIcuNotCovidNotDead();
+        kv.key = "Mulheres com ICU sem Covid e Vivas";
+        kv.value = lista.GetWomanIcuNotCovidNotDead();
+        break;
     case 2312:
         // Mulher - ICU - Positivo - Morto : 2312
-        return lista.GetWomanIcuCovidDead();
+        kv.key = "Mulheres com ICU com Covid e Mortas";
+        kv.value = lista.GetWomanIcuCovidDead();
+        break;
     case 2322:
         // Mulher - ICU - Negativo - Morto : 2322
-        return lista.GetWomanIcuNotCovidDead();
+        kv.key = "Mulheres com ICU sem Covid e Mortas";
+        kv.value = lista.GetWomanIcuNotCovidDead();
+        break;
     default:
-        return -1;
+        kv.key = "CONSULTA INVALIDA";
+        kv.value = -1;
+        break;
     }
+    return kv;
     
 }
 void menu(Lista& list)
@@ -339,8 +390,8 @@ void menu(Lista& list)
     submenuMorte(opcoes);
     steady_clock::time_point tp = steady_clock::now();
     milliseconds start_ms = duration_cast<milliseconds>(tp.time_since_epoch());
-    long consulta = consultar(opcoes, list);
-    if (consulta >= 0)
+    KEY_AND_VALUE consulta = consultar(opcoes, list);
+    if (consulta.value >= 0)
     {
         if (g_benchmark_mode)
         {
@@ -349,7 +400,7 @@ void menu(Lista& list)
             long long duration = (now_ms - start_ms).count();
             cout << "{ MODO BENCHMARK: Tempo para realizar a consulta: " << duration << "ms }" << endl;
         }
-        cout << "Resultado da consulta: " << consulta << " casos." << endl;
+        cout << "Casos de " << consulta.key << ": " << consulta.value << " casos." << endl;
     }
     else
     {

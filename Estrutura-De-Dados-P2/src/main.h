@@ -31,11 +31,15 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 using namespace std;
 using namespace chrono;
 
-
+struct KEY_AND_VALUE
+{
+    string key;
+    long value;
+};
 void submenuComorbidade(ostringstream& opcoes);
 void submenuCovid(ostringstream& opcoes);
 void submenuMorte(ostringstream& opcoes);
-long consultar(ostringstream& opcoes, Lista& lista);
+KEY_AND_VALUE consultar(ostringstream& opcoes, Lista& lista);
 void testes(Lista& list);
 void putContentIntoList(string filePath, Lista& list);
 void menu(Lista& list);

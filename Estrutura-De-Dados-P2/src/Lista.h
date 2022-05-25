@@ -23,6 +23,7 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 using namespace std;
 typedef Paciente TYPE;
 // No
+
 class Node
 {
 public:
