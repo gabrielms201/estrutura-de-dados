@@ -137,5 +137,4 @@ private:
     unsigned short _icu;
     unsigned short _obito;
 };
-
 #endif

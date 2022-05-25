@@ -20,12 +20,24 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 #include <iostream>
 #include <chrono>
 
+#ifdef WIN32 
+    #define CLEAR_SCREAM() system("cls");
+#else
+    #define CLEAR_SCREAM() system("clear");
+#endif
+
 
 using namespace std;
 using namespace chrono;
 
+
+void submenuComorbidade(ostringstream& opcoes);
+void submenuCovid(ostringstream& opcoes);
+void submenuMorte(ostringstream& opcoes);
+long consultar(ostringstream& opcoes, Lista& lista);
 void testes(string filePath);
 void putContentIntoList(string filePath, Lista& list);
-void menu(string filePath);
+void menu(Lista& list);
+
 
 #endif
