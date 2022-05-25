@@ -17,8 +17,9 @@ int main(int argc, char* argv[])
     string finalPath = documentFolder + "\\" + documentName;
     Lista list = Lista();
 
+
     cout << "Deseja ativar o modo benchmark? (1/0) ";
-    cin >> g_benchmark_mode;
+    g_benchmark_mode = getchar();
 
     steady_clock::time_point tp = steady_clock::now();
     milliseconds start_ms = duration_cast<milliseconds>(tp.time_since_epoch());
@@ -30,7 +31,7 @@ int main(int argc, char* argv[])
         tp = steady_clock::now();
         milliseconds now_ms = duration_cast<milliseconds>(tp.time_since_epoch());
         double duration = (now_ms - start_ms).count() / 1000.0f; // milliseconds - seconds 
-        cout << "MODO BENCHMARK: Tempo para carregar a lista em memoria: " << duration << "s" << endl;
+        cout << "{ MODO BENCHMARK: Tempo para carregar a lista em memoria: " << duration << "s }" << endl;
     }
     while (true)
         menu(list);
@@ -346,7 +347,7 @@ void menu(Lista& list)
             tp = steady_clock::now();
             milliseconds now_ms = duration_cast<milliseconds>(tp.time_since_epoch());
             long long duration = (now_ms - start_ms).count();
-            cout << "MODO BENCHMARK: Tempo para realizar a consulta: " << duration << "ms" << endl;
+            cout << "{ MODO BENCHMARK: Tempo para realizar a consulta: " << duration << "ms }" << endl;
         }
         cout << "Resultado da consulta: " << consulta << " casos." << endl;
     }
@@ -355,7 +356,7 @@ void menu(Lista& list)
         cout << "Consulta Invalida!" << endl;
     }
     cout << "Deseja continuar? (1/0) ";
-    bool continuar;
+    int continuar;
     cin >> continuar;
     if (!continuar)
     {
