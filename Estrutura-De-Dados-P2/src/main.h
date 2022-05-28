@@ -17,7 +17,7 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <iostream>
+#include <iomanip>
 #include <chrono>
 
 // Macro de compilacao para identificar o sistema na hora de limpar a tela
@@ -39,6 +39,7 @@ struct KEY_AND_VALUE
 void submenuComorbidade(ostringstream& opcoes);
 void submenuCovid(ostringstream& opcoes);
 void submenuMorte(ostringstream& opcoes);
+void curiosidadesMorbidas(Lista& list);
 KEY_AND_VALUE consultar(ostringstream& opcoes, Lista& lista);
 void testes(Lista& list);
 void putContentIntoList(string filePath, Lista& list);

@@ -222,6 +222,20 @@ unsigned int Lista::GetDeadQuantity() const
     return count;
 }
 
+unsigned int Lista::GetCovidDeadQuantity() const
+{
+    Node* ptr = _head;
+    int count = 0;
+    while (ptr != nullptr) // Encontro o ponteiro que anda for diferente de nulo (ou seja, nao acabou a lista)
+    {
+        TYPE data = ptr->GetData();
+        if (data.getTesteCovid() == 1 && data.getObito() == 1)
+            count++;
+        ptr = ptr->GetNextNode();
+    }
+    return count;
+}
+
 // Homem 
 // Diabete
 // Homem - Obesidade - Covid - Morreu

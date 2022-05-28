@@ -55,10 +55,10 @@ public:
     unsigned int FindPosition(TYPE& data) const;            // O(n)
     unsigned int GetSize() const { return _size; }
     string ToString() const;
-    // Custom Query
-    unsigned int GetDeadQuantity() const;                   // O(n)
+    // Custom Query - [ O (n) ]
+    unsigned int GetDeadQuantity() const;
+    unsigned int GetCovidDeadQuantity() const;
 
-    
     
     // Men - Obese
     unsigned int GetMenObeseCovidDead() const;

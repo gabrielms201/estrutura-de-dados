@@ -12,11 +12,10 @@ bool g_benchmark_mode;
 
 int main(int argc, char* argv[])
 {
-    string documentFolder = argc > 1 ? argv[1] : ".\\";
+    string documentFolder = argc > 1 ? argv[1] : "./";
     string documentName = "df_covid.csv";
-    string finalPath = documentFolder + "\\" + documentName;
+    string finalPath = documentFolder + "/" + documentName;
     Lista list = Lista();
-
 
     cout << "Deseja ativar o modo benchmark? (1/0) ";
     g_benchmark_mode = getchar();
@@ -166,10 +165,14 @@ void testes(Lista& list)
     cout << "GetWomanIcuNotCovidNotDead: ";
     cout << list.GetWomanIcuNotCovidNotDead() << endl;
     
-    cout << "Pressione digite algo para continuar: " << endl;
-    char ch;
-    cin >> ch;
-    CLEAR_SCREAM();
+    // Curiosidades morbidas
+    cout << "Curiosidades Morbidas: " << endl;
+    cout << "Total: ";
+    cout << list.GetSize() << endl;
+    cout << "GetCovidDeadQuantity: ";
+    cout << list.GetCovidDeadQuantity() << endl;
+    cout << "GetDeadQuantity: ";
+    cout << list.GetDeadQuantity() << endl;
 }
 void submenuComorbidade(ostringstream& opcoes)
 {
@@ -204,6 +207,24 @@ void submenuMorte(ostringstream& opcoes)
     cin >> opcao;
     opcoes << opcao;
     CLEAR_SCREAM();
+}
+void curiosidadesMorbidas(Lista& list)
+{
+    unsigned int totalPessoas = list.GetSize();
+    unsigned int totalMortosCovid = list.GetCovidDeadQuantity();
+    unsigned int totalMortos = list.GetDeadQuantity();
+    double taxaMorteCovidEntreMortos = (totalMortosCovid / (double) totalMortos) * 100;
+    double taxaMorteCovid = (totalMortosCovid / (double) totalPessoas) * 100;
+    double taxaMorte = (totalMortos / (double) totalPessoas) * 100;
+
+    cout << "Numero total de pessoas: " << totalPessoas << endl;
+    cout << "Numero total de mortos com covid: " << totalMortosCovid << endl;
+    cout << "Numero total de mortos: " << totalMortos << endl;
+    cout << endl << fixed << setprecision(2);
+    cout << "Porcentagem aproximada de mortos com covid dentre os que morreram: " << taxaMorteCovidEntreMortos << "%" << endl;
+    cout << "Porcentagem aproximada de mortos com covid: " << taxaMorteCovid << "%" << endl;
+    cout << "Porcentagem aproximada de mortos: " << taxaMorte << "%" << endl;
+
 }
 KEY_AND_VALUE consultar(ostringstream& opcoes, Lista& lista)
 {
@@ -362,49 +383,45 @@ void menu(Lista& list)
     CLEAR_SCREAM();
     switch (opcao)
     {
-    case 1:
+    case 1: case 2: // Caso a opcao seja de uma consulta personalizada, chamar os demais menus e realizar a consulta (caso 1 && 2)
+    {
+        ostringstream opcoes;
+        opcoes << opcao;
+        submenuComorbidade(opcoes);
+        submenuCovid(opcoes);
+        submenuMorte(opcoes);
+        steady_clock::time_point tp = steady_clock::now();
+        milliseconds start_ms = duration_cast<milliseconds>(tp.time_since_epoch());
+        KEY_AND_VALUE consulta = consultar(opcoes, list);
+        if (consulta.value >= 0)
+        {
+            if (g_benchmark_mode)
+            {
+                tp = steady_clock::now();
+                milliseconds now_ms = duration_cast<milliseconds>(tp.time_since_epoch());
+                long long duration = (now_ms - start_ms).count();
+                cout << "{ MODO BENCHMARK: Tempo para realizar a consulta: " << duration << "ms }" << endl;
+            }
+            cout << "Casos de " << consulta.key << ": " << consulta.value << " casos." << endl;
+        }
+        else
+        {
+            cout << "Consulta Invalida!" << endl;
+        }
         break;
-    case 2:
-        break;
+    } 
     case 3:
-        // TODO
-        return;
+        curiosidadesMorbidas(list);
+        break;
     case 4:
         exit(0);
         break;
     case 5:
         testes(list);
-        return;
+        break;
     default:
         cout << "Opcao Invalida!" << endl;
-        cout << "Pressione digite algo para continuar: " << endl;
-        char ch;
-        cin >> ch;
         break;
-    }
-    // Caso a opcao seja de uma consulta personalizada, chamar os demais menus e realizar a consulta
-    ostringstream opcoes;
-    opcoes << opcao;
-    submenuComorbidade(opcoes);
-    submenuCovid(opcoes);
-    submenuMorte(opcoes);
-    steady_clock::time_point tp = steady_clock::now();
-    milliseconds start_ms = duration_cast<milliseconds>(tp.time_since_epoch());
-    KEY_AND_VALUE consulta = consultar(opcoes, list);
-    if (consulta.value >= 0)
-    {
-        if (g_benchmark_mode)
-        {
-            tp = steady_clock::now();
-            milliseconds now_ms = duration_cast<milliseconds>(tp.time_since_epoch());
-            long long duration = (now_ms - start_ms).count();
-            cout << "{ MODO BENCHMARK: Tempo para realizar a consulta: " << duration << "ms }" << endl;
-        }
-        cout << "Casos de " << consulta.key << ": " << consulta.value << " casos." << endl;
-    }
-    else
-    {
-        cout << "Consulta Invalida!" << endl;
     }
     cout << "Deseja continuar? (1/0) ";
     int continuar;
@@ -413,6 +430,7 @@ void menu(Lista& list)
     {
         exit(0);
     }
+    cin.clear();
     CLEAR_SCREAM();
     return;
 }
