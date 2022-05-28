@@ -21,7 +21,7 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 #include <chrono>
 
 // Macro de compilacao para identificar o sistema na hora de limpar a tela
-#ifdef WIN32 
+#ifdef _WIN32
     #define CLEAR_SCREAM() system("cls");
 #else
     #define CLEAR_SCREAM() system("clear");

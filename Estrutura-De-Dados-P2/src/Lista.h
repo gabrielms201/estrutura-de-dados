@@ -17,6 +17,7 @@ ESTRUTURA DE DADOS - P2 - Lista Encadeada
 #include "Paciente.h"
 #include <string>
 #include <ostream>
+#include <stdexcept>
 #include <iostream>
 #include <sstream>
 
