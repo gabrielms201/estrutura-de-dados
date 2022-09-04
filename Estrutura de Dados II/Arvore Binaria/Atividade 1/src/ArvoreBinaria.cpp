@@ -230,9 +230,34 @@ void ArvoreBST::folhasAux(No* no) const
 	}
 
 }
-
-int ArvoreBST::removerFolha(int chave) const
+int ArvoreBST::removerFolha(int chave)
 {
-	return 0;
+	No* no = removerFolhaAux(raiz, chave);
+	return 1;
 }
+No* ArvoreBST::removerFolhaAux(No* no, int chave)
+{
+	if (no == NULL)
+	{
+		return 0;
+	}
+	if (chave > no->getChave())
+	{
+		no->setDir(removerFolhaAux(no->getDir(), chave));
+		return no;
+	}
+	else if (chave < no->getChave())
+	{
+		no->setEsq(removerFolhaAux(no->getEsq(), chave));
+		return no;
+	}
+
+	if (no->getDir() == NULL && no->getEsq() == NULL)
+	{
+		delete no;
+		no = NULL;
+		return no;
+	}
+}
+
 
