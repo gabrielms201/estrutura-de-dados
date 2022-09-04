@@ -208,7 +208,7 @@ void ArvoreBST::maxAux(No* no, int* max) const
 		{
 			*max = no->getChave();
 		}
-		minAux(no->getDir(), max);
+		maxAux(no->getDir(), max);
 	}
 }
 
