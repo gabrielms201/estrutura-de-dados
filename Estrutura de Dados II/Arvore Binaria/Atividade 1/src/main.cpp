@@ -20,6 +20,7 @@ int main(int argc, char* argv[])
 		cout << "\n ----7: Menor chave presente";
 		cout << "\n ----8: Maior chave presente";
 		cout << "\n ----9: Imprimir as chaves dos nos folhas em ordem crescente";
+		cout << "\n ----10: Remover uma folha";
 		cout << "\n ----0: Sair do programa\n";
 		cout << "\n***********************************";
 		cout << "\n-> ";
@@ -91,6 +92,16 @@ int main(int argc, char* argv[])
 			break;
 		}
 		case 9: {
+			cout << " Folhas: \n";
+			arv.folhas();
+			break;
+		}
+		case 10:
+		{
+			cout << " Digite a chave da folha: ";
+			cin >> x;
+			cout << " Removendo folha...\n";
+			arv.removerFolha(x);
 			break;
 		}
 		case 0: {

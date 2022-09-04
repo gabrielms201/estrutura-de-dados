@@ -212,14 +212,23 @@ void ArvoreBST::maxAux(No* no, int* max) const
 	}
 }
 
-int ArvoreBST::folhas() const
+void ArvoreBST::folhas() const
 {
-	return 0;
+	return folhasAux(raiz);
 }
 
-int ArvoreBST::folhasAux(No* no) const
+void ArvoreBST::folhasAux(No* no) const
 {
-	return 0;
+	if (no != NULL)
+	{
+		folhasAux(no->getEsq());
+		folhasAux(no->getDir());
+		if (no->getEsq() == NULL && no->getDir() == NULL)
+		{
+			cout << no->getChave() << " ";
+		}
+	}
+
 }
 
 int ArvoreBST::removerFolha(int chave) const

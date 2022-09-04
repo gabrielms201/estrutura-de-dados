@@ -47,8 +47,8 @@ public:
 	void minAux(No* no, int* min) const;
 	int max() const; //maior chave presente na BST
 	void maxAux(No* no, int* max) const;
-	int folhas() const; //imprimir as chaves, em ordem crescente, dos nós folhas da BST
-	int folhasAux(No* no) const;
+	void folhas() const; //imprimir as chaves, em ordem crescente, dos nós folhas da BST
+	void folhasAux(No* no) const;
 	int removerFolha(int chave) const;
 
 	
