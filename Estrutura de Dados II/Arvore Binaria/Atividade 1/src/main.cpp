@@ -15,7 +15,12 @@ int main(int argc, char* argv[])
 		cout << "\n ----2: Excluir";
 		cout << "\n ----3: Pesquisar";
 		cout << "\n ----4: Imprimir em ordem";
-		cout << "\n ----5: Sair do programa\n";
+		cout << "\n ----5: Quantidade de nos";
+		cout << "\n ----6: Altura da BST";
+		cout << "\n ----7: Menor chave presente";
+		cout << "\n ----8: Maior chave presente";
+		cout << "\n ----9: Imprimir as chaves dos nos folhas em ordem crescente";
+		cout << "\n ----0: Sair do programa\n";
 		cout << "\n***********************************";
 		cout << "\n-> ";
 		cin >> opcao;
@@ -35,7 +40,20 @@ int main(int argc, char* argv[])
 			cout << "\n Informe o valor (int) -> ";
 			cin >> x;
 			cout << "\n Resultado da pesquisa: \n";
-			No* resultado = arv.pesquisarRec(x);
+			int opcao;
+			cout << " 1- Pesquisa recursiva\n";
+			cout << " 2- Pesquisa iterativa\n";
+			cin >> opcao;
+			No* resultado = NULL;
+			if (opcao == 1)
+			{
+				resultado = arv.pesquisarRec(x);
+			}
+			else
+			{
+				resultado = arv.pesquisarIter(x);
+			}
+			
 			if (resultado == NULL)
 			{
 				cout << " No nao encontrado" << endl;
@@ -53,13 +71,36 @@ int main(int argc, char* argv[])
 			break;
 		}
 		case 5: {
+			cout << "Quantidade de nos:\n";
+			cout << arv.qdeNos();
+			break;
+		}
+		case 6: {
+			cout << " Altura da BST:\n";
+			cout << arv.alturaBST();
+			break;
+		}
+		case 7: {
+			cout << " Menor chave presente:\n";
+			cout << arv.min();
+			break;
+		}
+		case 8: {
+			cout << " Maior chave presente:\n";
+			cout << arv.max();
+			break;
+		}
+		case 9: {
+			break;
+		}
+		case 0: {
 			break;
 		}
 
 		default:
 			cout << "\n Opcao invalida! \n\n\n";
 		} // fim switch
-	} while (opcao != 5);
+	} while (opcao != 0);
 
 
 	return 0;

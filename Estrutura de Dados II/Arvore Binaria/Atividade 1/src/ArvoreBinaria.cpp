@@ -120,30 +120,104 @@ No* ArvoreBST::pesquisarRecAux(No* no, int chave) const
 
 No* ArvoreBST::pesquisarIter(int chave) const
 {
-	return nullptr;
+	No* no = raiz;
+	while (no != nullptr && no->getChave() != chave)
+	{
+		if (chave > no->getChave())
+		{
+			no = no->getDir();
+		}
+		else
+		{
+			no = no->getEsq();
+		}
+	}
+	return no;
 }
 
 int ArvoreBST::qdeNos() const
 {
-	return 0;
+	return qdeAux(raiz);
+}
+
+int ArvoreBST::qdeAux(No* no) const
+{
+	if (no != NULL)
+	{
+		return 1 + qdeAux(no->getEsq()) + qdeAux(no->getDir());
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 int ArvoreBST::alturaBST() const
 {
-	return 0;
+	return alturaBSTAux(raiz) - 1;
+}
+
+int ArvoreBST::alturaBSTAux(No* no) const
+{
+	if (no == NULL)
+	{
+		return 0;
+	}
+	int esq = alturaBSTAux(no->getEsq());
+	int dir = alturaBSTAux(no->getDir());
+	if (esq > dir)
+	{
+		return esq + 1;
+	}
+	else
+	{
+		return dir + 1;
+	}
 }
 
 int ArvoreBST::min() const
 {
-	return 0;
+	int chave = raiz->getChave();
+	minAux(raiz, &chave);
+	return chave;
+}
+void ArvoreBST::minAux(No* no, int* min) const
+{
+	if (no != NULL)
+	{
+		if (no->getChave() < *min)
+		{
+			*min = no->getChave();
+		}
+		minAux(no->getEsq(), min);
+	}
 }
 
 int ArvoreBST::max() const
 {
-	return 0;
+	int chave = raiz->getChave();
+	maxAux(raiz, &chave);
+	return chave;
+}
+
+void ArvoreBST::maxAux(No* no, int* max) const
+{
+	if (no != NULL)
+	{
+		if (no->getChave() > *max)
+		{
+			*max = no->getChave();
+		}
+		minAux(no->getDir(), max);
+	}
 }
 
 int ArvoreBST::folhas() const
+{
+	return 0;
+}
+
+int ArvoreBST::folhasAux(No* no) const
 {
 	return 0;
 }

@@ -40,10 +40,15 @@ public:
 	No* pesquisarRecAux(No* no, int chave) const;
 	No* pesquisarIter(int chave) const; //Versão Iterativa
 	int qdeNos() const;
+	int qdeAux(No* no) const;
 	int alturaBST() const;
+	int alturaBSTAux(No* no) const;
 	int min() const; //menor chave presente na BST
+	void minAux(No* no, int* min) const;
 	int max() const; //maior chave presente na BST
+	void maxAux(No* no, int* max) const;
 	int folhas() const; //imprimir as chaves, em ordem crescente, dos nós folhas da BST
+	int folhasAux(No* no) const;
 	int removerFolha(int chave) const;
 
 	
