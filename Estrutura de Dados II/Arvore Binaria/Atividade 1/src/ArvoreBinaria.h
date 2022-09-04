@@ -36,14 +36,15 @@ public:
 	void posOrdem(No* no) const;
 
 	// Metodos da atividade
-	No* pesquisarRec(int chave); //Versão Recursiva
-	No* pesquisarIter(int chave); //Versão Iterativa
-	int qdeNos();
-	int alturaBST();
-	int min(); //menor chave presente na BST
-	int max(); //maior chave presente na BST
-	int folhas(); //imprimir as chaves, em ordem crescente, dos nós folhas da BST
-	int removerFolha(int chave);
+	No* pesquisarRec(int chave) const; //Versão Recursiva
+	No* pesquisarRecAux(No* no, int chave) const;
+	No* pesquisarIter(int chave) const; //Versão Iterativa
+	int qdeNos() const;
+	int alturaBST() const;
+	int min() const; //menor chave presente na BST
+	int max() const; //maior chave presente na BST
+	int folhas() const; //imprimir as chaves, em ordem crescente, dos nós folhas da BST
+	int removerFolha(int chave) const;
 
 	
 

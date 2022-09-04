@@ -32,7 +32,19 @@ int main(int argc, char* argv[])
 			break;
 		}
 		case 3: {
-			cout << "\n Ainda nao implementado! ";
+			cout << "\n Informe o valor (int) -> ";
+			cin >> x;
+			cout << "\n Resultado da pesquisa: \n";
+			No* resultado = arv.pesquisarRec(x);
+			if (resultado == NULL)
+			{
+				cout << " No nao encontrado" << endl;
+			}
+			else 
+			{
+				cout << " Chave do no: " << resultado->getChave() << endl;
+				cout << " Endereco do no: " << resultado << endl;
+			}
 			break;
 		}
 		case 4: {
