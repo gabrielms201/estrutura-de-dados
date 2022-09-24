@@ -300,6 +300,22 @@ void ArvoreBST::print(No* no, int space) const
     }
 }
 
+void ArvoreBST::gerarInformacoesNutricionais(std::list<std::string> meal)
+{
+    for (list<std::string>::iterator it = meal.begin(); it != meal.end(); it++)
+    {
+
+        No* no = Pesquisar(*it, raiz);
+        if (no == NULL)
+        {
+            std::cout << "Alimento " << *it << " nao encontrado na arvore!" << std::endl;
+            continue;
+        }
+        Food food = no->getDado();
+        std::cout << "Dados do alimento: " << *it << std::endl << food << std::endl;
+    }
+}
+
 // Overloads!!
 std::ostream& operator<<(std::ostream& os, const ArvoreBST& tree)
 {
@@ -317,9 +333,3 @@ std::ostream& operator<<(std::ostream& os, const ArvoreBST& tree)
     }
     return os;
 }
-
-
-
-
-
-

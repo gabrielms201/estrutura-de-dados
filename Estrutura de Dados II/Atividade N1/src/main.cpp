@@ -2,15 +2,23 @@
 
 int main(int argc, char* argv[])
 {
-    std::string filePath = argc == 2 ? argv[1] : "filtered_data.csv";
+    try
+    {
+        std::string filePath = argc >= 2 ? argv[1] : "filtered_data.csv";
 
-    //menuArvore();
-    ArvoreBST bst = ArvoreBST();
-    CsvStorage storage = CsvStorage(filePath, &bst);
-    storage.OpenFileAndStorage();
+        ArvoreBST bst = ArvoreBST();
+        CsvStorage storage = CsvStorage(filePath, &bst);
+        storage.OpenFileAndStorage();
+        BSTViewer::Menu(bst);
 
-    bst.printDadosArvore();
-    return 0;
+        return 0;
+    }
+    catch (std::exception ex)
+    {
+        std::cerr << "Execption ao rodar o FCRD: \n" << ex.what();
+        exit(1);
+    }
+
 }
 
 //int menuArvore()

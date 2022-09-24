@@ -1,8 +1,10 @@
-﻿#pragma once
+﻿#ifndef ARVORE_BINARIA_HEADER
+#define ARVORE_BINARIA_HEADER
 
 #include <iostream>
 #include <ostream>
 #include <string>
+#include <list>
 #include "Food.h"
 using namespace std;
 
@@ -60,7 +62,10 @@ public:
     void printDadosArvore(No* no);
     void print() const;
     void print(No* no, int space) const;
+    void gerarInformacoesNutricionais(std::list<std::string> meal);
 
-    // Friends :)
+    // Friends operator para o overload do operador bitwise
     friend ostream &operator<<(ostream &os, const ArvoreBST &bst);
 };
+
+#endif
