@@ -22,31 +22,36 @@ Food::Food(std::string foodAndServing, int calories, int caloriesFromFat, double
 
 // Ostream operator
 std::ostream &operator<<(std::ostream &os, const Food &food)
-{
-    os << "FoodAndServing: " << food._foodAndServing << std::endl
-       << "Calories: " << food._calories << std::endl
-       << "CaloriesFromFat: " << food._caloriesFromFat << std::endl
-       << "TotalFatG: " << food._totalFatG << std::endl
-       << "TotalFatDv: " << food._totalFatDv << std::endl
-       << "SodiumG: " << food._sodiumG << std::endl
-       << "SodiumDv: " << food._sodiumDv  << std::endl
-       << "PotassiumG: " << food._potassiumG << std::endl
-       << "PotassiumDv: " << food._potassiumDv << std::endl
-       << "TotalCarboHydrateG: " << food._totalCarboHydrateG << std::endl
-       << "TotalCarboHydrateDv: " << food._totalCarboHydrateDv << std::endl
-       << "DietaryFiberG: " << food._dietaryFiberG << std::endl
-       << "DieteryFiberDv: " << food._dieteryFiberDv << std::endl
-       << "SugarsG: " << food._sugarsG << std::endl
-       << "ProteinG: " << food._proteinG << std::endl
-       << "VitaminADv: " << food._vitaminADv << std::endl
-       << "VitaminCDv: " << food._vitaminCDv << std::endl
-       << "CalciumDv: " << food._calciumDv << std::endl
-       << "EeironeeDv: " << food._eeironeeDv << std::endl
-       << "SaturatedFatDv: " << food._saturatedFatDv << std::endl
-       << "SaturatedFatMgE: " << food._saturatedFatMgE << std::endl
-       << "CholeSterolDv: " << food._choleSterolDv << std::endl
-       << "CholeSterolMgE: " << food._choleSterolMgE << std::endl
-       << "FoodType: " << food._foodType << std::endl;
+{   
+    std::string card = "|" + food._foodAndServing + "|";
+    os << std::setfill('_') << std::setw(food._foodAndServing.size() + 2) << "" << std::endl;
+    os << std::left << std::setfill('_') << std::setw(20) << card  << std::setw(67) << "" << std::endl;
+    os << std::setfill(' ');
+    os.flush();
+    os << std::left << std::setw(30) << "|Calories" << "|" << std::setw(55) << food._calories << "|" << std::endl
+       << std::left << std::setw(30) << "|CaloriesFromFat" << "|" << std::setw(55) << food._caloriesFromFat << "|" << std::endl
+       << std::left << std::setw(30) << "|TotalFatG (g)" << "|" << std::setw(55) << food._totalFatG << "|"  << std::endl
+       << std::left << std::setw(30) << "|TotalFatDv (%)" << "|" << std::setw(55) << food._totalFatDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|SodiumG (g)" << "|" << std::setw(55) << food._sodiumG << "|"  << std::endl
+       << std::left << std::setw(30) << "|SodiumDv (%)" << "|" << std::setw(55) << food._sodiumDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|PotassiumG (g)" << "|" << std::setw(55) << food._potassiumG << "|"  << std::endl
+       << std::left << std::setw(30) << "|PotassiumDv (%)" << "|" << std::setw(55) << food._potassiumDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|TotalCarboHydrateG (g)" << "|" << std::setw(55) << food._totalCarboHydrateG  << "|"  << std::endl
+       << std::left << std::setw(30) << "|TotalCarboHydrateDv (%)" << "|" << std::setw(55) << food._totalCarboHydrateDv <<  "|"  << std::endl
+       << std::left << std::setw(30) << "|DietaryFiberG (g)" << "|" << std::setw(55) << food._dietaryFiberG << "|"  << std::endl
+       << std::left << std::setw(30) << "|DieteryFiberDv (%)" << "|" << std::setw(55) << food._dieteryFiberDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|SugarsG (g)" << "|" << std::setw(55) << food._sugarsG << "|"  << std::endl
+       << std::left << std::setw(30) << "|ProteinG (g)" << "|" << std::setw(55) << food._proteinG << "|"  << std::endl
+       << std::left << std::setw(30) << "|VitaminADv (%)" << "|" << std::setw(55) << food._vitaminADv << "|"  << std::endl
+       << std::left << std::setw(30) << "|VitaminCDv (%)" << "|" << std::setw(55) << food._vitaminCDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|CalciumDv (%)" << "|" << std::setw(55) << food._calciumDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|EeironeeDv (%)" << "|" << std::setw(55) << food._eeironeeDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|SaturatedFatDv (%)" << "|" << std::setw(55) << food._saturatedFatDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|SaturatedFatMgE (mg)" << "|" << std::setw(55) << food._saturatedFatMgE << "|"  << std::endl
+       << std::left << std::setw(30) << "|CholeSterolDv (%)" << "|" << std::setw(55) << food._choleSterolDv << "|"  << std::endl
+       << std::left << std::setw(30) << "|CholeSterolMgE (mg)" << "|" << std::setw(55) << food._choleSterolMgE << "|"  << std::endl
+       << std::left << std::setw(30) << "|FoodType" << "|" << std::setw(55) << food._foodType << "|" << std::endl;
+    os << "|_____________________________________________________________________________________|" << std::endl;
+    
     return os;
 }
-

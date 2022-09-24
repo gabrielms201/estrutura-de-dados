@@ -8,7 +8,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 	std::list<std::string> list;
 	list.push_back("Apple");
 	list.push_back("Grapes");
-	bst.gerarInformacoesNutricionais(list);
-
+	//bst.gerarInformacoesNutricionais(list);
+	bst.printDadosArvore();
 	// Criar opcao que soma a porra toda 
 }
