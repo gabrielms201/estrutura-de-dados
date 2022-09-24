@@ -1,9 +1,10 @@
 ﻿#include "ArvoreBinaria.h"
 // Classe: No
 // Constructor
-No::No(int chave)
-    : chave(chave), esq(NULL), dir(NULL)
+No::No(Food food)
+    : dado(food), esq(NULL), dir(NULL)
 {
+    chave = dado.getFoodAndServing();
 }
 
 // Classe: Arvore BST
@@ -14,29 +15,30 @@ ArvoreBST::ArvoreBST()
 }
 
 // Metodos
-void ArvoreBST::inserir(int chave)
+void ArvoreBST::inserir(Food food)
 {
     if (raiz == NULL)
-        raiz = new No(chave);
+        raiz = new No(food);
     else
-        inserirAux(raiz, chave);
+        inserirAux(raiz, food);
 }
 
-void ArvoreBST::inserirAux(No* no, int chave)
+void ArvoreBST::inserirAux(No* no, Food food)
 {
+    std::string chave = food.getFoodAndServing();
     // se for menor, entao insere na sub-�rvore � esquerda
     if (chave < no->getChave())
     {
         // verifica se nao tem filho a esquerda: achou local de inser��o 
         if (no->getEsq() == NULL)
         {
-            No* novo_no = new No(chave);
+            No* novo_no = new No(food);
             no->setEsq(novo_no); // add o novo_no na esquerda do no atual
         }
         else
         {
             // senao, continua percorrendo recursivamente para esquerda
-            inserirAux(no->getEsq(), chave);
+            inserirAux(no->getEsq(), food);
         }
     }
     // se for maior, entao insere na sub-arvore da direita
@@ -45,13 +47,13 @@ void ArvoreBST::inserirAux(No* no, int chave)
         // verifica se nao tem filho a direita: achou local de inser��o
         if (no->getDir() == NULL)
         {
-            No* novo_no = new No(chave);
+            No* novo_no = new No(food);
             no->setDir(novo_no); // add o novo_no � direita do n� atual
         }
         else
         {
             // senao, continua percorrendo recursivamente para direita
-            inserirAux(no->getDir(), chave);
+            inserirAux(no->getDir(), food);
         }
     }
     // se a chave for igual a alguma presente na arvore, nao vamos inserir
@@ -89,7 +91,7 @@ void ArvoreBST::posOrdem(No* no) const
     }
 }
 //Pesquisa: Versao iterativa
-No* ArvoreBST::Pesquisar(int dado, No* no) const
+No* ArvoreBST::Pesquisar(std::string dado, No* no) const
 {
     if (raiz == NULL) return NULL; //arvore vazia
     No* atual = no;  // cria ptr aux (atual) e comeca a procurar
@@ -105,7 +107,7 @@ No* ArvoreBST::Pesquisar(int dado, No* no) const
     return atual; //encontrou o dado
 }
 //Pesquisa: Versao recursiva
-No* ArvoreBST::PesquisarRec(No* r, int k) const
+No* ArvoreBST::PesquisarRec(No* r, std::string k) const
 {
     if (r == NULL || r->getChave() == k)
         return r;
@@ -127,11 +129,11 @@ int ArvoreBST::contarNos(No* atual) const
 int ArvoreBST::altura(No* atual) const
 {
     if (atual == NULL)
-        return -1; //�rvore ou sub-�rvore vazia: altura = -1
+        return -1; //�rvore ou sub-arvore vazia: altura = -1
     else
     {
         if (atual->getEsq() == NULL && atual->getDir() == NULL)
-            return 0; //�vore com apenas 1 n�, altura = 0
+            return 0; //�vore com apenas 1 no, altura = 0
         else
         { //altura da �rvore � a altura da sub-�rvore de maior altura
             if (altura(atual->getEsq()) > altura(atual->getDir()))
@@ -142,7 +144,7 @@ int ArvoreBST::altura(No* atual) const
     }
 }
 //versao A
-No* ArvoreBST::excluir(No* t, int key)
+No* ArvoreBST::excluir(No* t, std::string key)
 {
     //Arvore t vazia
     if (t == NULL)
@@ -202,7 +204,7 @@ int ArvoreBST::folhas(No* atual) const
     return folhas(atual->getEsq()) + folhas(atual->getDir());
 }
 
-int ArvoreBST::min() const
+std::string ArvoreBST::min() const
 {
     No* atual = raiz;
     No* anterior = NULL;
@@ -212,11 +214,11 @@ int ArvoreBST::min() const
         atual = atual->getEsq();
     }
     if (anterior == NULL)
-        return -1;
+        return "null";
     return anterior->getChave();
 }
 // Iterativo
-int ArvoreBST::max() const
+std::string ArvoreBST::max() const
 {
     No* atual = raiz;
     No* anterior = NULL;
@@ -226,7 +228,7 @@ int ArvoreBST::max() const
         atual = atual->getDir();
     }
     if (anterior == NULL)
-        return -1;
+        return "null";
     return anterior->getChave();
 }
 //recursivo
@@ -263,6 +265,20 @@ void ArvoreBST::infs(No* r)
         cout << "\n Valor minimo: " << aux->getChave();
         aux = findMax(r);
         cout << "\n Valor maximo: " << aux->getChave();
+    }
+}
+
+void ArvoreBST::printDadosArvore()
+{
+    printDadosArvore(raiz);
+}
+void ArvoreBST::printDadosArvore(No* no)
+{
+    if (no != NULL)
+    {
+        printDadosArvore(no->getEsq());
+        cout << no->getDado() << std::endl;
+        printDadosArvore(no->getDir());
     }
 }
 

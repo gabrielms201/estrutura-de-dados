@@ -7,6 +7,6 @@ add_executable(${PROJECT_NAME}
     "src/ArvoreBinaria.cpp"
     "src/Food.cpp"
     "src/Food.h"
-    "src/CsvReader.cpp"
-    "src/CsvReader.h"
+    "src/CsvStorage.cpp"
+    "src/CsvStorage.h"
 )

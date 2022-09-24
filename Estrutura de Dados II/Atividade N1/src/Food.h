@@ -6,7 +6,7 @@ class Food
 public:
     // Constructors
     Food(std::string foodAndServing, int calories, int caloriesFromFat, double totalFatG, int totalFatDv,
-         int sodiumG, int sodiumDv, int potassiumDv, int totalCarboHydrateG, int totalCarboHydrateDv, int dietaryFiberG,
+         int sodiumG, int sodiumDv, int potassiumG, int potassiumDv, int totalCarboHydrateG, int totalCarboHydrateDv, int dietaryFiberG,
          int dieteryFiberDv, int sugarsG, int proteinG, int vitaminADv, int vitaminCDv, int calciumDv, int eeironeeDv,
          double saturatedFatDv, int saturatedFatMgE, int choleSterolDv, int choleSterolMgE,
          std::string foodType);
@@ -48,7 +48,10 @@ public:
     {
         return _sodiumDv;
     }
-
+    int getPotassiumG() const
+    {
+        return _potassiumG;
+    }
     int getPotassiumDv() const
     {
         return _potassiumDv;
@@ -139,6 +142,7 @@ private:
     int _totalFatDv;
     int _sodiumG;
     int _sodiumDv;
+    int _potassiumG;
     int _potassiumDv;
     int _totalCarboHydrateG;
     int _totalCarboHydrateDv;

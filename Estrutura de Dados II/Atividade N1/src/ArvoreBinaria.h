@@ -2,6 +2,8 @@
 
 #include <iostream>
 #include <ostream>
+#include <string>
+#include "Food.h"
 using namespace std;
 
 // No
@@ -9,17 +11,20 @@ class No
 {
 private:
     No* esq, * dir;
-    int chave;
+    std::string chave;
+    Food dado;
 
 public:
-    No(int chave);
+    No(Food food);
     // funcoes getters e setters
-    int getChave() const { return chave; }
+    std::string getChave() const { return chave; }
     No* getEsq() const { return esq; }
     No* getDir() const { return dir; }
+    Food getDado() const { return dado; }
     void setEsq(No* no) { esq = no; }
     void setDir(No* no) { dir = no; }
-    void setChave(int k) { chave = k; }
+    void setChave(std::string k) { chave = k; }
+    void setDado(Food& dado) { this->dado = dado; }
 };
 
 // ArvoreBST
@@ -35,22 +40,24 @@ public:
     // Getters
     No* getRaiz() const { return raiz; }
     // Methods
-    void inserir(int chave);
-    void inserirAux(No* no, int chave);
+    void inserir(Food food);
+    void inserirAux(No* no, Food food);
     void emOrdem(No* no) const;
     void preOrdem(No* no) const;
     void posOrdem(No* no) const;
-    No* Pesquisar(int dado, No* no) const;
-    No* PesquisarRec(No* r, int k) const;
+    No* Pesquisar(std::string dado, No* no) const;
+    No* PesquisarRec(No* r, std::string k) const;
     int contarNos(No* atual) const;
     int altura(No* atual) const;
-    No* excluir(No* t, int key);
+    No* excluir(No* t, std::string key);
     int folhas(No* atual) const;
-    int min() const;
-    int max() const;
+    std::string min() const;
+    std::string max() const;
     No* findMin(No* t) const;
     No* findMax(No* t) const;
     void infs(No* r);
+    void printDadosArvore();
+    void printDadosArvore(No* no);
     void print() const;
     void print(No* no, int space) const;
 

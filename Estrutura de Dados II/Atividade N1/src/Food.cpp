@@ -1,14 +1,14 @@
 #include "Food.h"
 // Constructor
 Food::Food(std::string foodAndServing, int calories, int caloriesFromFat, double totalFatG, int totalFatDv,
-           int sodiumG, int sodiumDv, int potassiumDv, int totalCarboHydrateG, int totalCarboHydrateDv,
+           int sodiumG, int sodiumDv,int potassiumG, int potassiumDv, int totalCarboHydrateG, int totalCarboHydrateDv,
            int dietaryFiberG, int dieteryFiberDv, int sugarsG, int proteinG, int vitaminADv, int vitaminCDv,
            int calciumDv, int eeironeeDv, double saturatedFatDv, int saturatedFatMgE, int choleSterolDv,
            int choleSterolMgE, std::string foodType) : _foodAndServing(foodAndServing), _calories(calories),
                                                               _caloriesFromFat(caloriesFromFat), _totalFatG(totalFatG),
                                                               _totalFatDv(totalFatDv), _sodiumG(sodiumG),
-                                                              _sodiumDv(sodiumDv), _potassiumDv(potassiumDv),
-                                                              _totalCarboHydrateG(totalCarboHydrateG),
+                                                              _sodiumDv(sodiumDv), _potassiumG(potassiumG),
+                                                              _potassiumDv(potassiumDv), _totalCarboHydrateG(totalCarboHydrateG),
                                                               _totalCarboHydrateDv(totalCarboHydrateDv),
                                                               _dietaryFiberG(dietaryFiberG),
                                                               _dieteryFiberDv(dieteryFiberDv), _sugarsG(sugarsG),
@@ -30,6 +30,7 @@ std::ostream &operator<<(std::ostream &os, const Food &food)
        << "TotalFatDv: " << food._totalFatDv << std::endl
        << "SodiumG: " << food._sodiumG << std::endl
        << "SodiumDv: " << food._sodiumDv  << std::endl
+       << "PotassiumG: " << food._potassiumG << std::endl
        << "PotassiumDv: " << food._potassiumDv << std::endl
        << "TotalCarboHydrateG: " << food._totalCarboHydrateG << std::endl
        << "TotalCarboHydrateDv: " << food._totalCarboHydrateDv << std::endl
