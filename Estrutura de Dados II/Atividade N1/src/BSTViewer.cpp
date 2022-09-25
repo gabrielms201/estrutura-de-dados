@@ -2,13 +2,87 @@
 
 void BSTViewer::Menu(ArvoreBST& bst)
 {
-	int option;
-	//bst.printDadosArvore();
+	int option = 999;
 	std::cout << "Bem vindo ao FCRDB (Food Csv Reader And DB)!" << std::endl;
-	std::list<std::string> list;
-	list.push_back("Apple");
-	list.push_back("Grapes");
-	//bst.gerarInformacoesNutricionais(list);
-	bst.printDadosArvore();
-	// Criar opcao que soma a porra toda 
+	do
+	{
+		std::cout << "\t\t==============" << std::endl;
+		std::cout << "\t\t< FCRDB Menu >" << std::endl;
+		std::cout << "\t\t==============" << std::endl;
+		std::cout << "1- ~> Consultar refeicao." << std::endl;
+		std::cout << "2- ~> Informacoes da Arvore." << std::endl;
+		std::cout << "3- ~> Visualizar alimentos armazenados. " << std::endl;
+		std::cout << "4- ~> Visualizar tabela nutricional de todos os alimentos armazenados. " << std::endl;
+		std::cout << "0- ~> Sair." << std::endl;
+		std::cout << "$ ";
+		std::cin.clear();
+		std::cin >> option;
+		switch (option)
+		{
+		case 1:
+		{
+			// Consultar refeicao
+			int qty = 0;
+			std::cout << "Por favor, informe a quantidade de alimentos da sua refeicao: " << std::endl;
+			std::cin >> qty;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::list<std::string> meal;
+			std::string currentFood;
+			for (int i = 0; i < qty; i++)
+			{
+				std::cout << "Informe a refeicao n" << i + 1 << " :" << std::endl ;
+				std::cout << "$ ";
+				getline(std::cin, currentFood);
+				meal.push_back(currentFood);
+			}
+			// Imprime as informacoes nutricionais da refeicao
+			bst.gerarInformacoesNutricionais(meal);
+			std::cout << "Total de calorias consumidas: " << bst.totalDeCaloriasConsumidas(meal);
+			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+			CLEAR_SCREAM();
+			break;
+		}
+		case 2:
+		{
+			// Informacoes da arvore
+			std::cout << bst;
+			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+			CLEAR_SCREAM();
+			break;
+		}
+		case 3:
+		{
+			// Imprime chaves em ordem
+			bst.emOrdem(bst.getRaiz());
+			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+			CLEAR_SCREAM();
+			break;
+		}
+		case 4:
+		{
+			// Tabelas nutricionais
+			bst.printDadosArvore();
+			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cin.ignore();
+			std::cin.get();
+			CLEAR_SCREAM();
+			break;
+		}
+		case 0:
+		{
+			break;
+		}
+		default:
+			CLEAR_SCREAM();
+			break;
+		}
+	} while (option != 0);
+
+
 }

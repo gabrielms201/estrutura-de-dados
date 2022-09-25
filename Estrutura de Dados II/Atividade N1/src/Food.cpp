@@ -21,6 +21,7 @@ Food::Food(std::string foodAndServing, int calories, int caloriesFromFat, double
 {}
 
 // Ostream operator
+// Aqui imprimimos a tabela nutricional ao chamar o cout em um objeto da classe
 std::ostream &operator<<(std::ostream &os, const Food &food)
 {   
     std::string card = "|" + food._foodAndServing + "|";

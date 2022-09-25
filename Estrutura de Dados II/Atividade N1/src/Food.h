@@ -44,7 +44,7 @@ public:
     // Uma vez que os dados são consistentes e lidos pelo csv, poder altera-los seria um tiro no pé.
 
 
-    // Friend (para poder disponibilizar os atributos privados para o operador bitwise)
+    // Friend keyword (para poder disponibilizar os atributos privados para o operador bitwise)
     friend std::ostream &operator<<(std::ostream &os, const Food &food);
 private:
     std::string _foodAndServing;

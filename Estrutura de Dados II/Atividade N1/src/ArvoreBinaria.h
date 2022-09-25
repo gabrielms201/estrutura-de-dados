@@ -63,6 +63,7 @@ public:
     void print() const;
     void print(No* no, int space) const;
     void gerarInformacoesNutricionais(std::list<std::string> meal);
+    int totalDeCaloriasConsumidas(std::list<std::string> meal);
 
     // Friends operator para o overload do operador bitwise
     friend ostream &operator<<(ostream &os, const ArvoreBST &bst);

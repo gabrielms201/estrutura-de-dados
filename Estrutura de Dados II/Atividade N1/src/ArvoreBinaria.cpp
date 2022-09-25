@@ -272,6 +272,7 @@ void ArvoreBST::printDadosArvore()
 {
     printDadosArvore(raiz);
 }
+// Ao chamar esse metodo, cada objeto armazenado na arvore eh impresso
 void ArvoreBST::printDadosArvore(No* no)
 {
     if (no != NULL)
@@ -302,12 +303,14 @@ void ArvoreBST::print(No* no, int space) const
 
 void ArvoreBST::gerarInformacoesNutricionais(std::list<std::string> meal)
 {
+    // Para cada elemento dentro da lista de refeicao (iterator) - https://cplusplus.com/reference/iterator/
     for (list<std::string>::iterator it = meal.begin(); it != meal.end(); it++)
     {
-
+        // Procura o alimento na BST
         No* no = Pesquisar(*it, raiz);
         if (no == NULL)
         {
+            // Se nao encontrar, ira para o proximo
             std::cout << "Alimento " << *it << " nao encontrado na arvore!" << std::endl;
             continue;
         }
@@ -316,7 +319,30 @@ void ArvoreBST::gerarInformacoesNutricionais(std::list<std::string> meal)
     }
 }
 
+int ArvoreBST::totalDeCaloriasConsumidas(std::list<std::string> meal)
+{
+    int total = 0;
+    // Para cada elemento dentro da lista de refeicao (iterator) - https://cplusplus.com/reference/iterator/
+    for (list<std::string>::iterator it = meal.begin(); it != meal.end(); it++)
+    {
+        // Procura o alimento na BST
+        No* no = Pesquisar(*it, raiz);
+        if (no == NULL)
+        {
+            // Se nao encontrar, ira para o proximo
+            continue;
+        }
+        Food food = no->getDado();
+        total += food.getCalories();
+    }
+    return total;
+
+}
+
 // Overloads!!
+// Fizemos isso para facilitar o print da arvore BST.
+// Quando aplicamos um operador bitwise na arvore (quando utilizamos o cout), 
+// esse trecho de codigo eh chamado
 std::ostream& operator<<(std::ostream& os, const ArvoreBST& tree)
 {
     No* aux;
