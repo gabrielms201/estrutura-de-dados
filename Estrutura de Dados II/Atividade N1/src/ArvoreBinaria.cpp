@@ -1,4 +1,11 @@
-﻿#include "ArvoreBinaria.h"
+﻿// Participante                            |  TIA
+// FABIO DOMINGUES PEREIRA SABINO          - 32154429
+// JOAO VITOR BOS CASTELLI                 - 32130430
+// MAYARA MENEGHETTI HONDA                 - 32152280
+// PAULO HENRIQUE BRAGA CECHINEL           - 32151128
+// RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
+
+#include "ArvoreBinaria.h"
 // Classe: No
 // Constructor
 No::No(Food food)
@@ -59,7 +66,7 @@ void ArvoreBST::inserirAux(No* no, Food food)
     // se a chave for igual a alguma presente na arvore, nao vamos inserir
     // nao pode existir 2 chaves iguais na nossa BST
 }
-
+// imprime em ordem
 void ArvoreBST::emOrdem(No* no) const
 {
     if (no != NULL)
@@ -69,7 +76,7 @@ void ArvoreBST::emOrdem(No* no) const
         emOrdem(no->getDir());
     }
 }
-
+// imprime pre ordem
 void ArvoreBST::preOrdem(No* no) const
 {
     if (no != NULL)
@@ -79,7 +86,7 @@ void ArvoreBST::preOrdem(No* no) const
         preOrdem(no->getDir());
     }
 }
-
+// imprime pos ordem
 void ArvoreBST::posOrdem(No* no) const
 {
     if (no != NULL)

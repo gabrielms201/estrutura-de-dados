@@ -1,3 +1,10 @@
+// Participante                            |  TIA
+// FABIO DOMINGUES PEREIRA SABINO          - 32154429
+// JOAO VITOR BOS CASTELLI                 - 32130430
+// MAYARA MENEGHETTI HONDA                 - 32152280
+// PAULO HENRIQUE BRAGA CECHINEL           - 32151128
+// RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
+
 #include "Food.h"
 // Constructor
 Food::Food(std::string foodAndServing, int calories, int caloriesFromFat, double totalFatG, int totalFatDv,

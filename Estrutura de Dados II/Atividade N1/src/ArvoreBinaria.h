@@ -1,4 +1,11 @@
-﻿#ifndef ARVORE_BINARIA_HEADER
+﻿// Participante                            |  TIA
+// FABIO DOMINGUES PEREIRA SABINO          - 32154429
+// JOAO VITOR BOS CASTELLI                 - 32130430
+// MAYARA MENEGHETTI HONDA                 - 32152280
+// PAULO HENRIQUE BRAGA CECHINEL           - 32151128
+// RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
+
+#ifndef ARVORE_BINARIA_HEADER
 #define ARVORE_BINARIA_HEADER
 
 #include <iostream>
@@ -65,7 +72,7 @@ public:
     void gerarInformacoesNutricionais(std::list<std::string> meal);
     int totalDeCaloriasConsumidas(std::list<std::string> meal);
 
-    // Friends operator para o overload do operador bitwise
+    // Friend operator para o overload do operador bitwise
     friend ostream &operator<<(ostream &os, const ArvoreBST &bst);
 };
 
