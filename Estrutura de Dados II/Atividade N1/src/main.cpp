@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
     }
     catch (std::exception ex)
     {
-        std::cerr << "Execption ao rodar o FCRD: \n" << ex.what();
+        std::cerr << "Exception ao rodar o FCRD: \n" << ex.what();
         exit(1);
     }
 

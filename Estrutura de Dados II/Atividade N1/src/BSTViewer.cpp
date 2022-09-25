@@ -25,7 +25,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			int qty = 0;
 			std::cout << "Por favor, informe a quantidade de alimentos da sua refeicao: " << std::endl;
 			std::cin >> qty;
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+			std::cin.ignore();
 			std::list<std::string> meal;
 			std::string currentFood;
 			for (int i = 0; i < qty; i++)
@@ -41,7 +41,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
-			CLEAR_SCREAM();
+			int clear = CLEAR_SCREAM();
 			break;
 		}
 		case 2:
@@ -51,7 +51,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
-			CLEAR_SCREAM();
+			int clear = CLEAR_SCREAM();
 			break;
 		}
 		case 3:
@@ -61,7 +61,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
-			CLEAR_SCREAM();
+			int clear = CLEAR_SCREAM();
 			break;
 		}
 		case 4:
@@ -71,7 +71,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
-			CLEAR_SCREAM();
+			int clear = CLEAR_SCREAM();
 			break;
 		}
 		case 0:
@@ -79,7 +79,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			break;
 		}
 		default:
-			CLEAR_SCREAM();
+			int clear = CLEAR_SCREAM();
 			break;
 		}
 	} while (option != 0);
