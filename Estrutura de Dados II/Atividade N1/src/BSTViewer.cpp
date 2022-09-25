@@ -48,7 +48,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			// Imprime as informacoes nutricionais da refeicao
 			bst.gerarInformacoesNutricionais(meal);
 			std::cout << "Total de calorias consumidas: " << bst.totalDeCaloriasConsumidas(meal);
-			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
 			int clear = CLEAR_SCREAM();
@@ -58,7 +58,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 		{
 			// Informacoes da arvore
 			std::cout << bst;
-			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
 			int clear = CLEAR_SCREAM();
@@ -68,7 +68,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 		{
 			// Imprime chaves em ordem
 			bst.emOrdem(bst.getRaiz());
-			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
 			int clear = CLEAR_SCREAM();
@@ -78,7 +78,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 		{
 			// Tabelas nutricionais
 			bst.printDadosArvore();
-			std::cout << std::endl << "Pressione uma tecla para continuar: " << std::endl;
+			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
 			int clear = CLEAR_SCREAM();
