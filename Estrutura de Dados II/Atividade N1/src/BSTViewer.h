@@ -7,8 +7,8 @@
 
 #ifndef BST_VIEWER_HEADER
 #define BST_VIEWER_HEADER
-// Macro de compilacao para identificar o sistema na hora de limpar a tela
 #include <cstdlib>
+// Macro de compilacao para identificar o sistema na hora de limpar a tela
 #ifdef _WIN32
 #define CLEAR_SCREAM() system("cls");
 #else
