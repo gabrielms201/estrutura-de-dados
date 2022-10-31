@@ -1,0 +1,37 @@
+# Project: avlProject
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe -D__DEBUG__
+CC       = gcc.exe -D__DEBUG__
+WINDRES  = windres.exe
+OBJ      = AVL.o mainAVL.o NodeAVL.o "../../../../Users/Ricar/temp/estrutura-de-dados/Estrutura\ de\ Dados\ II/Atividade-AVL/Produto.o"
+LINKOBJ  = AVL.o mainAVL.o NodeAVL.o "../../../../Users/Ricar/temp/estrutura-de-dados/Estrutura de Dados II/Atividade-AVL/Produto.o"
+LIBS     = -L"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/lib" -L"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -g3
+INCS     = -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/include" -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/include" -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Downloads/Dev-Cpp 5.11 TDM-GCC x64 4.9.2 Portable (1)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = avlProject.exe
+CXXFLAGS = $(CXXINCS) -std=c++11 -g3
+CFLAGS   = $(INCS) -std=c++11 -g3
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+AVL.o: AVL.cpp
+	$(CPP) -c AVL.cpp -o AVL.o $(CXXFLAGS)
+
+mainAVL.o: mainAVL.cpp
+	$(CPP) -c mainAVL.cpp -o mainAVL.o $(CXXFLAGS)
+
+NodeAVL.o: NodeAVL.cpp
+	$(CPP) -c NodeAVL.cpp -o NodeAVL.o $(CXXFLAGS)
+
+"../../../../Users/Ricar/temp/estrutura-de-dados/Estrutura\ de\ Dados\ II/Atividade-AVL/Produto.o": ../../../../Users/Ricar/temp/estrutura-de-dados/Estrutura\ de\ Dados\ II/Atividade-AVL/Produto.cpp
+	$(CPP) -c "../../../../Users/Ricar/temp/estrutura-de-dados/Estrutura de Dados II/Atividade-AVL/Produto.cpp" -o "../../../../Users/Ricar/temp/estrutura-de-dados/Estrutura de Dados II/Atividade-AVL/Produto.o" $(CXXFLAGS)
