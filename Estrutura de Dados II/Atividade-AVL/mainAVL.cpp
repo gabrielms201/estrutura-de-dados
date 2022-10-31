@@ -34,14 +34,7 @@ void CalculateInferiorValueProducts(AVL* avl)
 	std::cout << "Digite a quantidade de estoque para ver produtos com estoque menor: " << std::endl;
 	std::cin >> filter;
 
-	auto allProducts = avl->StorageAllProductsIntoAList();
-	for (auto it = allProducts.begin(); it != allProducts.end(); it++)
-	{
-		if (it->qtde < filter)
-		{
-			std::cout << *it << std::endl;
-		}
-	}
+	avl->CalculateInferiorValueProducts(filter);
 }
 
 Produto CreateProduct()

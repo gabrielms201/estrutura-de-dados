@@ -4,6 +4,7 @@
 
 #include "NodeAVL.h"
 #include <list>
+#include <iostream>
 
 class AVL
 {
@@ -21,6 +22,7 @@ public:
 
 	std::list<Produto> StorageAllProductsIntoAList() const;
 	double CalculateInventoryTotalValue() const;
+	void CalculateInferiorValueProducts(int value) const;
 	std::string TraverseInOrder() const;
 	std::string TraversePreOrder() const;
 	std::string TraversePostOrder() const;
@@ -44,6 +46,7 @@ private:
 
 	const NodeAVL* StorageAllProductsIntoAListInternal(std::list<Produto>& products, const NodeAVL* node) const;
 	double CalculateInventoryTotalValueInternal(const NodeAVL* node) const;
+	void CalculateInferiorValueProductsInternal(const NodeAVL* node, int value) const;
 	std::string TraverseInOrderInternal(const NodeAVL* node) const;
 	std::string TraversePreOrderInternal(const NodeAVL* node) const;
 	std::string TraversePostOrderInternal(const NodeAVL* node) const;

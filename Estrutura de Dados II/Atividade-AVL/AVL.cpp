@@ -82,6 +82,11 @@ double AVL::CalculateInventoryTotalValue() const
 	return CalculateInventoryTotalValueInternal(m_Root);
 }
 
+void AVL::CalculateInferiorValueProducts(int value) const
+{
+	return CalculateInferiorValueProductsInternal(m_Root, value);
+}
+
 std::string AVL::TraverseInOrder() const
 {
 	return TraverseInOrderInternal(m_Root);
@@ -115,6 +120,18 @@ double AVL::CalculateInventoryTotalValueInternal(const NodeAVL* node) const
 	}
 
 	return 0;
+}
+
+void AVL::CalculateInferiorValueProductsInternal(const NodeAVL* node, int value) const
+{
+	if (node != nullptr)
+	{
+		CalculateInferiorValueProductsInternal(node->GetLeft(), value);
+		Produto product = node->GetData();
+		if (product.qtde < value)
+			std::cout << node->GetData();
+		CalculateInferiorValueProductsInternal(node->GetRight(), value);
+	}
 }
 
 std::string AVL::TraverseInOrderInternal(const NodeAVL* node) const
