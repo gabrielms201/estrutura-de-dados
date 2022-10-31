@@ -77,6 +77,11 @@ std::list<Produto> AVL::StorageAllProductsIntoAList() const
 	return productList;
 }
 
+double AVL::CalculateInventoryTotalValue() const
+{
+	return CalculateInventoryTotalValueInternal(m_Root);
+}
+
 std::string AVL::TraverseInOrder() const
 {
 	return TraverseInOrderInternal(m_Root);
@@ -96,6 +101,20 @@ const NodeAVL* AVL::StorageAllProductsIntoAListInternal(std::list<Produto>& prod
 		return node;
 	}
 	return nullptr;
+}
+
+double AVL::CalculateInventoryTotalValueInternal(const NodeAVL* node) const
+{
+	if (node != nullptr)
+	{
+		double sum = 0;
+		sum += CalculateInventoryTotalValueInternal(node->GetLeft());
+		sum += node->GetData().qtde * node->GetData().valorUnitario;
+		sum += CalculateInventoryTotalValueInternal(node->GetRight());
+		return sum;
+	}
+
+	return 0;
 }
 
 std::string AVL::TraverseInOrderInternal(const NodeAVL* node) const

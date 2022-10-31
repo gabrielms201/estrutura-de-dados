@@ -20,6 +20,7 @@ public:
 	int GetHeight() const;
 
 	std::list<Produto> StorageAllProductsIntoAList() const;
+	double CalculateInventoryTotalValue() const;
 	std::string TraverseInOrder() const;
 	std::string TraversePreOrder() const;
 	std::string TraversePostOrder() const;
@@ -42,6 +43,7 @@ private:
 	int GetDegreeInternal(const NodeAVL* node) const;
 
 	const NodeAVL* StorageAllProductsIntoAListInternal(std::list<Produto>& products, const NodeAVL* node) const;
+	double CalculateInventoryTotalValueInternal(const NodeAVL* node) const;
 	std::string TraverseInOrderInternal(const NodeAVL* node) const;
 	std::string TraversePreOrderInternal(const NodeAVL* node) const;
 	std::string TraversePostOrderInternal(const NodeAVL* node) const;

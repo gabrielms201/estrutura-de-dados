@@ -25,12 +25,7 @@ void CalculateProductInventoryValue(AVL* avl)
 
 void CalculateInventoryTotalValue(AVL* avl)
 {
-	auto allProducts = avl->StorageAllProductsIntoAList();
-	double sum = 0;
-	for (auto it = allProducts.begin(); it != allProducts.end(); it++)
-	{
-		sum += it->valorUnitario * it->qtde;
-	}
+	double sum = avl->CalculateInventoryTotalValue();
 	std::cout << "Valor total do inventario: R$:" << sum << std::endl;
 }
 void CalculateInferiorValueProducts(AVL* avl)
