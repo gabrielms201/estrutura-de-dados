@@ -122,7 +122,6 @@ const No* CsvManager::StorageBstIntoCsvLinesList(std::list<std::string>& lines, 
 void CsvManager::StorageStreamIntoBST(std::stringstream& stream)
 {
 	std::string content;
-	int count = 0;
 	while (getline(stream, content))
 	{
 		// Criacao da conteudo da linha
@@ -139,11 +138,10 @@ void CsvManager::StorageStreamIntoBST(std::stringstream& stream)
 		}
 		// Obtem o objeto atraves do conversos de atributos
 		Food food = ConvertAtributesIntoFood(atributes);
-		count++;
+
 		_bst->inserir(food);
 		delete[] atributes;
 	}
-	int test = 32;
 }
 /// <summary>
 /// Atraves de um array, os atributos são armazenados em uma variável, que por sua vez serão utilizadas na criação do objeto
