@@ -15,9 +15,9 @@ int main(int argc, char* argv[])
 
         ArvoreBST bst = ArvoreBST();
         // Objeto da classe que realiza o armazenamento do Csv dentro da BST
-        CsvStorage storage = CsvStorage(filePath, &bst);
+        CsvManager manager = CsvManager(filePath, &bst);
         // Metodo que armazena o Csv na BST
-        storage.OpenFileAndStorage();
+        manager.OpenFileAndStorage();
         // Chama o menu (metodo estatico da classe BSTViewer)
         BSTViewer::Menu(bst);
 

@@ -19,21 +19,28 @@ using namespace std;
 class No
 {
 private:
-    No* esq, * dir;
+    No* esq, * dir, * parent;
     std::string chave;
     Food dado;
+    int _balanceFactor;
 
 public:
-    No(Food food);
+    No(Food food, No* parent = NULL);
     // funcoes getters e setters
     std::string getChave() const { return chave; }
     No* getEsq() const { return esq; }
     No* getDir() const { return dir; }
+    No* getParent() const { return parent;  };
+    void setParent(No* no) { parent = no; }
     Food getDado() const { return dado; }
+    int getBalanceFactor() const { return _balanceFactor; }
     void setEsq(No* no) { esq = no; }
     void setDir(No* no) { dir = no; }
     void setChave(std::string k) { chave = k; }
     void setDado(Food& dado) { this->dado = dado; }
+    void updateBalanceFactor();
+    int calculateHeight(const No* no) const;
+    bool isLeaf() const;
 };
 
 // ArvoreBST
@@ -50,7 +57,7 @@ public:
     No* getRaiz() const { return raiz; }
     // Methods
     void inserir(Food food);
-    void inserirAux(No* no, Food food);
+    No* inserirAux(No* no, No* parent, Food food);
     void emOrdem(No* no) const;
     void preOrdem(No* no) const;
     void posOrdem(No* no) const;
@@ -70,7 +77,19 @@ public:
     void print() const;
     void print(No* no, int space) const;
     void gerarInformacoesNutricionais(std::list<std::string> meal);
-    int totalDeCaloriasConsumidas(std::list<std::string> meal);
+    void imprimirTotalConsumido(std::list<std::string> meal);
+    
+    // Avl methods
+    void updateParentChild(No* parent, const No* child, No* newChild);
+    No* balance(No* no);
+    No* rotateLeft(No* no);
+    No* rotateRight(No* no);
+    No* rotateLeftRight(No* no);
+    No* rotateRightLeft(No* no);
+    void checkNodes() const;
+    void checkNodes(No* no) const;
+
+
 
     // Friend operator para o overload do operador bitwise
     friend ostream &operator<<(ostream &os, const ArvoreBST &bst);

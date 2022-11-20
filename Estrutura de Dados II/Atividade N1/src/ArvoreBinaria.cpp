@@ -8,10 +8,37 @@
 #include "ArvoreBinaria.h"
 // Classe: No
 // Constructor
-No::No(Food food)
-    : dado(food), esq(NULL), dir(NULL)
+No::No(Food food, No* parent)
+    : dado(food), esq(NULL), dir(NULL), _balanceFactor(0), parent(parent)
 {
     chave = dado.getFoodAndServing();
+}
+
+void No::updateBalanceFactor()
+{
+    int leftHeight = esq == NULL ? -1 : calculateHeight(esq);
+    int rightHeight = dir == NULL ? -1 : calculateHeight(dir);
+    _balanceFactor = rightHeight - leftHeight;
+}
+
+int No::calculateHeight(const No* no) const
+{
+    if (no == NULL || no->isLeaf())
+    {
+        return 0;
+    }
+    else
+    {
+        int left = calculateHeight(no->getEsq());
+        int right = calculateHeight(no->getDir());
+        int max = left > right ? left : right;
+        return 1 + max;
+    }
+}
+
+bool No::isLeaf() const
+{
+    return esq == NULL && dir == NULL;
 }
 
 // Classe: Arvore BST
@@ -21,50 +48,222 @@ ArvoreBST::ArvoreBST()
 {
 }
 
+
+void ArvoreBST::updateParentChild(No* parent, const No* child, No* newChild)
+{
+    if (parent != NULL)
+    {
+        if (parent->getEsq() == child)
+            parent->setEsq(newChild);
+        else
+            parent->setDir(newChild);
+    }
+    else
+    {
+        raiz = newChild;
+    }
+
+    if (newChild != NULL)
+        newChild->setParent(parent);
+}
+
+No* ArvoreBST::balance(No* no)
+{
+    if (no != NULL)
+    {
+        no->updateBalanceFactor();
+        int nodeBF = no->getBalanceFactor();
+
+        // Tree is left heavy.
+        //if (nodeBF == 2) // --> Use this if BF=HL-HR.
+        if (nodeBF == -2)
+        {
+            // Get left subtree's height.
+            No* left = no->getEsq();
+            left->updateBalanceFactor();
+            int leftChildBF = left->getBalanceFactor();
+
+            //if (leftChildBF == 1) // --> Use this if BF=HL-HR.
+            if (leftChildBF == -1)
+                no = rotateRight(no);
+            else
+                no = rotateLeftRight(no);
+        }
+        // Tree is right heavy.
+        //else if (nodeBF == -2) // --> Use this if BF=HL-HR.
+        else if (nodeBF == 2)
+        {
+            // Get right subtree's height.
+            No* right = no->getDir();
+            right->updateBalanceFactor();
+            int rightChildBF = right->getBalanceFactor();
+
+            //if (rightChildBF == -1) // --> Use this if BF=HL-HR.
+            if (rightChildBF == 1)
+                no = rotateLeft(no);
+            else
+                no = rotateRightLeft(no);
+        }
+    }
+
+    return no;
+}
+
+No* ArvoreBST::rotateLeft(No* no)
+{
+    if (no == NULL) return NULL;
+
+    // The current node must have a right child/subtree.	
+    No* newRoot = no->getDir();
+    if (newRoot == NULL) return NULL;
+
+    // Swap parent links.
+    No* parent = no->getParent();
+    updateParentChild(parent, no, newRoot);
+    no->setParent(newRoot);
+
+    // Since newRoot is this subtree's new root,
+    // its left child becomes the right child of
+    // the current node.
+    No* left = newRoot->getEsq();
+    no->setDir(left);
+
+    // Update the parent of newRoot's left child
+    // if there is a left child.
+    if (left != NULL)
+        left->setParent(no);
+
+    // The new left child of newRoot is the current node.
+    newRoot->setEsq(no);
+
+    no->updateBalanceFactor();
+    newRoot->updateBalanceFactor();
+
+    return newRoot;
+}
+
+No* ArvoreBST::rotateRight(No* no)
+{
+    if (no == NULL) return NULL;
+
+    // The current node must have a left child/subtree.	
+    No* newRoot = no->getEsq();
+    if (newRoot == NULL) return NULL;
+
+    // Swap parent links.
+    No* parent = no->getParent();
+    updateParentChild(parent, no, newRoot);
+    no->setParent(newRoot);
+
+    // Since newRoot is this subtree's new root,
+    // its right child becomes the left child of
+    // the current node.
+    No* right = newRoot->getDir();
+    no->setEsq(right);
+
+    // Update the parent of newRoot's right child
+    // if there is a right child.
+    if (right != NULL)
+        right->setParent(no);
+
+    // The new right child of newRoot is the current node.
+    newRoot->setDir(no);
+
+    no->updateBalanceFactor();
+    newRoot->updateBalanceFactor();
+
+    return newRoot;
+}
+
+No* ArvoreBST::rotateLeftRight(No* no)
+{
+    no->setEsq(rotateLeft(no->getEsq()));
+    return rotateRight(no);
+}
+
+No* ArvoreBST::rotateRightLeft(No* no)
+{
+    no->setDir(rotateRight(no->getDir()));
+    return rotateLeft(no);
+}
+
+void ArvoreBST::checkNodes() const
+{
+    checkNodes(raiz);
+    std::cout << "All balance factor OK!!" << std::endl;
+}
+
+void ArvoreBST::checkNodes(No* no) const
+{
+    if (no != NULL)
+    {
+        checkNodes(no->getEsq());
+        int balance = no->getBalanceFactor();
+
+
+        No* parentNode = no->getParent();
+        No* esqNode = no->getEsq();
+        No* dirNode = no->getDir();
+
+        string parent = "null";
+        string esq = "null";
+        string dir = "null";
+
+        // getting all parents
+        if (parentNode != NULL)
+        {
+            parent = parentNode->getChave();
+        }
+        if (esqNode != NULL)
+        {
+            esq = esqNode->getChave();
+        }
+        if (dirNode != NULL)
+        {
+            dir = dirNode->getChave();
+        }
+
+
+        cout << "Chave: " << no->getChave() 
+            << " | Parent: " << parent
+            << " | Esq: " << esq
+            << " | Dir: " << dir
+            << " | Balance: " << balance
+            << std::endl;
+        if (balance < -1 || balance > 1)
+        {
+            std::cerr << "FATAL: WRONG AVL IMPLEMENTATION!!!" << std::endl;
+            exit(1);
+        }
+        checkNodes(no->getDir());
+    }
+}
+
 // Metodos
 void ArvoreBST::inserir(Food food)
 {
     if (raiz == NULL)
         raiz = new No(food);
     else
-        inserirAux(raiz, food);
+        inserirAux(raiz, NULL, food);
 }
 
-void ArvoreBST::inserirAux(No* no, Food food)
+No* ArvoreBST::inserirAux(No* no, No* parent, Food food)
 {
     std::string chave = food.getFoodAndServing();
-    // se for menor, entao insere na sub-�rvore � esquerda
-    if (chave < no->getChave())
+    if (no == NULL)
+        no = new No(food, parent);
+    else if (no->getChave() == chave)
     {
-        // verifica se nao tem filho a esquerda: achou local de inser��o 
-        if (no->getEsq() == NULL)
-        {
-            No* novo_no = new No(food);
-            no->setEsq(novo_no); // add o novo_no na esquerda do no atual
-        }
-        else
-        {
-            // senao, continua percorrendo recursivamente para esquerda
-            inserirAux(no->getEsq(), food);
-        }
+        std::cerr << "Impossivel inserir chave duplicada!" << std::endl;
+        return NULL;
     }
-    // se for maior, entao insere na sub-arvore da direita
+    else if (chave < no->getChave())
+        no->setEsq(inserirAux(no->getEsq(), no, food));
     else if (chave > no->getChave())
-    {
-        // verifica se nao tem filho a direita: achou local de inser��o
-        if (no->getDir() == NULL)
-        {
-            No* novo_no = new No(food);
-            no->setDir(novo_no); // add o novo_no � direita do n� atual
-        }
-        else
-        {
-            // senao, continua percorrendo recursivamente para direita
-            inserirAux(no->getDir(), food);
-        }
-    }
-    // se a chave for igual a alguma presente na arvore, nao vamos inserir
-    // nao pode existir 2 chaves iguais na nossa BST
+        no->setDir(inserirAux(no->getDir(), no, food));
+    no = balance(no);
+    return no;
 }
 // imprime em ordem
 void ArvoreBST::emOrdem(No* no) const
@@ -326,9 +525,31 @@ void ArvoreBST::gerarInformacoesNutricionais(std::list<std::string> meal)
     }
 }
 
-int ArvoreBST::totalDeCaloriasConsumidas(std::list<std::string> meal)
+void ArvoreBST::imprimirTotalConsumido(std::list<std::string> meal)
 {
-    int total = 0;
+    int caloriesSum = 0;
+    int caloriesFromFatSum = 0;
+    double totalFatGSum = 0;
+    int totalFatDvSum = 0;
+    int sodiumGSum = 0;
+    int sodiumDvSum = 0;
+    int potassiumGSum = 0;
+    int potassiumDvSum = 0;
+    int totalCarboHydrateGSum = 0;
+    int totalCarboHydrateDvSum = 0;
+    int dietaryFiberGSum = 0;
+    int dieteryFiberDvSum = 0;
+    int sugarsGSum = 0;
+    int proteinGSum = 0;
+    int vitaminADvSum = 0;
+    int vitaminCDvSum = 0;
+    int calciumDvSum = 0;
+    int eeironeeDvSum = 0;
+    double saturatedFatDvSum = 0;
+    int saturatedFatMgESum = 0;
+    int choleSterolDvSum = 0;
+    int choleSterolMgESum = 0;
+    
     // Para cada elemento dentro da lista de refeicao (iterator) - https://cplusplus.com/reference/iterator/
     for (list<std::string>::iterator it = meal.begin(); it != meal.end(); it++)
     {
@@ -340,9 +561,53 @@ int ArvoreBST::totalDeCaloriasConsumidas(std::list<std::string> meal)
             continue;
         }
         Food food = no->getDado();
-        total += food.getCalories();
+        caloriesSum += food.getCalories();
+        caloriesFromFatSum += food.getCaloriesFromFat();
+        totalFatGSum += food.getTotalFatG();
+        totalFatDvSum += food.getTotalFatDv();
+        sodiumGSum += food.getSodiumG();
+        sodiumDvSum += food.getSodiumDv();
+        potassiumGSum += food.getPotassiumG();
+        potassiumDvSum += food.getPotassiumDv();
+        totalCarboHydrateGSum += food.getTotalCarboHydrateG();
+        totalCarboHydrateDvSum += food.getTotalCarboHydrateDv();
+        dietaryFiberGSum += food.getDietaryFiberG();
+        dieteryFiberDvSum += food.getDieteryFiberDv();
+        sugarsGSum += food.getSugarsG();
+        proteinGSum += food.getProteinG();
+        vitaminADvSum += food.getVitaminADv();
+        vitaminCDvSum += food.getVitaminCDv();
+        calciumDvSum += food.getCalciumDv();
+        eeironeeDvSum += food.getEeironeeDv();
+        saturatedFatDvSum += food.getSaturatedFatDv();
+        saturatedFatMgESum += food.getSaturatedFatMgE();
+        choleSterolDvSum += food.getCholeSterolDv();
+        choleSterolMgESum += food.getCholeSterolMgE();
     }
-    return total;
+    std::cout 
+        << "Total Consumido: "                                                      << std::endl
+        << "calories: "                 << caloriesSum                              << std::endl
+        << "caloriesFromFat: "          << caloriesFromFatSum                       << std::endl
+        << "totalFatG: "                << totalFatGSum                             << std::endl
+        << "totalFatDv: "               << totalFatDvSum                            << std::endl
+        << "sodiumG: "                  << sodiumGSum                               << std::endl
+        << "sodiumDv:"                  << sodiumDvSum                              << std::endl
+        << "potassiumG: "               << potassiumGSum                            << std::endl
+        << "potassiumDv: "              << potassiumDvSum                           << std::endl
+        << "totalCarboHydrateG: "       << totalCarboHydrateGSum                    << std::endl
+        << "totalCarboHydrateDv: "      << totalCarboHydrateDvSum                   << std::endl
+        << "dietaryFiberG: "            << dietaryFiberGSum                         << std::endl
+        << "dieteryFiberDv: "           << dieteryFiberDvSum                        << std::endl
+        << "sugarsG: "                  << sugarsGSum                               << std::endl
+        << "proteinG: "                 << proteinGSum                              << std::endl
+        << "vitaminADv: "               << vitaminADvSum                            << std::endl
+        << "vitaminCDv: "               << vitaminCDvSum                            << std::endl
+        << "calciumDv: "                << calciumDvSum                             << std::endl
+        << "eeironeeDv: "               << eeironeeDvSum                            << std::endl
+        << "saturatedFatDv: "           << saturatedFatDvSum                        << std::endl
+        << "saturatedFatMgE: "          << saturatedFatMgESum                       << std::endl
+        << "choleSterolDv: "            << choleSterolDvSum                         << std::endl
+        << "choleSterolMgE: "           << choleSterolMgESum                        << std::endl;
 
 }
 

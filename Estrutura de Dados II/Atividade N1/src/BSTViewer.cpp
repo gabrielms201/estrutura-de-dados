@@ -23,6 +23,8 @@ void BSTViewer::Menu(ArvoreBST& bst)
 		std::cout << "2- ~> Informacoes da Arvore." << std::endl;
 		std::cout << "3- ~> Visualizar alimentos armazenados. " << std::endl;
 		std::cout << "4- ~> Visualizar tabela nutricional de todos os alimentos armazenados. " << std::endl;
+		std::cout << "5- ~> Visualizar todos os nos" << std::endl;
+		std::cout << "6- ~> Print 2D" << std::endl;
 		std::cout << "0- ~> Sair." << std::endl;
 		std::cout << "$ ";
 		std::cin.clear();
@@ -47,7 +49,8 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			}
 			// Imprime as informacoes nutricionais da refeicao
 			bst.gerarInformacoesNutricionais(meal);
-			std::cout << "Total de calorias consumidas: " << bst.totalDeCaloriasConsumidas(meal);
+			std::cout << "Total de calorias consumidas: ";
+			bst.imprimirTotalConsumido(meal);
 			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
 			std::cin.ignore();
 			std::cin.get();
@@ -83,6 +86,15 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			std::cin.get();
 			int clear = CLEAR_SCREAM();
 			break;
+		}
+		case 5:
+		{
+			bst.checkNodes();
+			break;
+		}
+		case 6:
+		{
+			bst.print();
 		}
 		case 0:
 		{

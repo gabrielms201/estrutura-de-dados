@@ -20,7 +20,6 @@ public:
          int dieteryFiberDv, int sugarsG, int proteinG, int vitaminADv, int vitaminCDv, int calciumDv, int eeironeeDv,
          double saturatedFatDv, int saturatedFatMgE, int choleSterolDv, int choleSterolMgE,
          std::string foodType);
-    Food() {};
 
     // Getters
     std::string getFoodAndServing() const { return _foodAndServing; }

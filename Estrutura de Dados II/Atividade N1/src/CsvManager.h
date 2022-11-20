@@ -6,7 +6,7 @@
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
 #ifndef CSV_STORAGE_HEADER
-#define CSV_STORAGE_HEADER
+#define CSV_MANAGER_HEADER
 
 #include <iostream>
 #include <sstream>
@@ -15,7 +15,7 @@
 #include "ArvoreBinaria.h"
 
 
-class CsvStorage
+class CsvManager
 {
 private:
 	// Atributos
@@ -39,7 +39,7 @@ public:
 	void OpenFileAndStorage();
 
 	// Construtor
-	CsvStorage(std::string filePath, ArvoreBST* bst);
+	CsvManager(std::string filePath, ArvoreBST* bst);
 
 };
 

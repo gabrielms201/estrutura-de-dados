@@ -5,10 +5,10 @@
 // PAULO HENRIQUE BRAGA CECHINEL           - 32151128
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
-#include "CsvStorage.h"
+#include "CsvManager.h"
 
 // Construtor
-CsvStorage::CsvStorage(std::string filePath, ArvoreBST* bst)
+CsvManager::CsvManager(std::string filePath, ArvoreBST* bst)
 	: _filePath(filePath), _bst(bst)
 {
 	_headerQuantity = 2;
@@ -19,7 +19,7 @@ CsvStorage::CsvStorage(std::string filePath, ArvoreBST* bst)
 /// Esse metodo abrir o CSV, pular os headers e então criar uma stream com os dados desse arquivo
 /// Atraves dessa stream, o método StorageStreamIntoBST() é chamado.
 /// </summary>
-void CsvStorage::OpenFileAndStorage()
+void CsvManager::OpenFileAndStorage()
 {
 	// Aqui estamos criado um "Input File Stream" para podermos ler o arquivo no caminho (configurado no atributo) 
 	// std::ifstream::in -> Modo de leitura (input)
@@ -59,9 +59,10 @@ void CsvStorage::OpenFileAndStorage()
 /// para cada linha armazenada (com seus respectivos atributos)
 /// </summary>
 /// <param name="stream"></param>
-void CsvStorage::StorageStreamIntoBST(std::stringstream& stream)
+void CsvManager::StorageStreamIntoBST(std::stringstream& stream)
 {
 	std::string content;
+	int count = 0;
 	while (getline(stream, content))
 	{
 		// Criacao da conteudo da linha
@@ -78,17 +79,18 @@ void CsvStorage::StorageStreamIntoBST(std::stringstream& stream)
 		}
 		// Obtem o objeto atraves do conversos de atributos
 		Food food = ConvertAtributesIntoFood(atributes);
-		
+		count++;
 		_bst->inserir(food);
 		delete[] atributes;
 	}
+	int test = 32;
 }
 /// <summary>
 /// Atraves de um array, os atributos são armazenados em uma variável, que por sua vez serão utilizadas na criação do objeto
 /// </summary>
 /// <param name="atributes">: buffer</param>
 /// <returns>Food</returns>
-Food CsvStorage::ConvertAtributesIntoFood(std::string* atributes)
+Food CsvManager::ConvertAtributesIntoFood(std::string* atributes)
 {	// Poderiamos ter construido o objeto passando já a posicao do array para o construtor:
 	// ex: Food food = Food(atributes[0], stoi[atributes[1], ..., stoi[atributes[N])
 	// Mas com o intuito de promover a organizacao do codigo, mesmo com o custo de mais linhas, atribuimos cada valor em uma variavel
