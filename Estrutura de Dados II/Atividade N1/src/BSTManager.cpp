@@ -55,7 +55,7 @@ void BSTManager::Menu()
 			}
 			// Imprime as informacoes nutricionais da refeicao
 			_bst->gerarInformacoesNutricionais(meal);
-			std::cout << "Total de calorias consumidas: ";
+			std::cout << "Total consumido: ";
 			_bst->imprimirTotalConsumido(meal);
 			Freeze();
 			break;
