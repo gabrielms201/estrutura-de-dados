@@ -13,7 +13,11 @@ CsvManager::CsvManager(std::string filePath, ArvoreBST* bst)
 {
 	_headerQuantity = 2;
 	_delimiter = ',';
+	_backupPath = _filePath;
+	_backupPath.replace(_backupPath.end() - 4, _backupPath.end(), "_bkp.csv");
 }
+
+
 
 /// <summary>
 /// Esse metodo abrir o CSV, pular os headers e então criar uma stream com os dados desse arquivo
@@ -53,6 +57,55 @@ void CsvManager::OpenFileAndStorage()
 		inputFile.close();
 	}
 }
+
+void CsvManager::SaveBackup()
+{
+	// https://cplusplus.com/reference/fstream/ifstream/ifstream/
+	std::ofstream backupFile(_backupPath, std::ifstream::out | std::ios_base::in | std::ios_base::trunc);
+
+	std::list<std::string> lines = StorageBstIntoCsvLinesList();
+	if (!backupFile.is_open())
+	{
+		std::string message = "Erro tentando abrir o arquivo CSV\n Por favor verifique se o caminho do mesmo esta configurado corretamente.";
+		throw std::invalid_argument(message);
+	}
+	// Write each line
+	for (list<std::string>::iterator it = lines.begin(); it != lines.end(); it++)
+	{
+		backupFile << *it;
+		backupFile << "\n";
+	}
+	// Após terminarmos o trabalho, precisamos fechar o arquivo.
+	if (backupFile.is_open())
+	{
+		backupFile.close();
+	}
+}
+std::list<std::string> CsvManager::StorageBstIntoCsvLinesList() const
+{
+	std::list<std::string> lines = std::list<std::string>();
+	if (_bst->getRaiz() != NULL)
+		lines.push_back(_bst->getRaiz()->transformIntoCsvLine());
+	StorageBstIntoCsvLinesList(lines, _bst->getRaiz());
+	return lines;
+}
+
+const No* CsvManager::StorageBstIntoCsvLinesList(std::list<std::string>& lines, const No* node) const
+{
+	// pre ordem
+	if (node != NULL)
+	{
+		const No* noEsquerda = StorageBstIntoCsvLinesList(lines, node->getEsq());
+		if (noEsquerda != NULL)
+			lines.push_back(noEsquerda->transformIntoCsvLine());
+		const No* noDireita = StorageBstIntoCsvLinesList(lines, node->getDir());
+		if (noDireita != NULL)
+			lines.push_back(noDireita->transformIntoCsvLine());
+		return node;
+	}
+	return NULL;
+}
+
 
 /// <summary>
 /// Esse método recebe uma stream, que através dela realizará o filtro de cada linha armazenada e criará um "Food"

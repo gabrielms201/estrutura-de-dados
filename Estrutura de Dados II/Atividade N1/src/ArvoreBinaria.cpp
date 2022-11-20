@@ -47,6 +47,37 @@ void No::copyDataFrom(const No* no)
     dado = no->getDado();
 }
 
+std::string No::transformIntoCsvLine() const
+{
+    std::stringstream ss;
+
+    ss << dado.getFoodAndServing() << ","
+        << dado.getCalories() << ","
+        << dado.getCaloriesFromFat() << ","
+        << dado.getTotalFatG() << ","
+        << dado.getTotalFatDv() << ","
+        << dado.getSodiumG() << ","
+        << dado.getSodiumDv() << ","
+        << dado.getPotassiumG() << ","
+        << dado.getPotassiumDv() << ","
+        << dado.getTotalCarboHydrateG() << ","
+        << dado.getTotalCarboHydrateDv() << ","
+        << dado.getDietaryFiberG() << ","
+        << dado.getDieteryFiberDv() << ","
+        << dado.getSugarsG() << ","
+        << dado.getProteinG() << ","
+        << dado.getVitaminADv() << ","
+        << dado.getVitaminCDv() << ","
+        << dado.getCalciumDv() << ","
+        << dado.getEeironeeDv() << ","
+        << dado.getSaturatedFatDv() << ","
+        << dado.getSaturatedFatMgE() << ","
+        << dado.getCholeSterolDv() << ","
+        << dado.getCholeSterolMgE() << ","
+        << dado.getFoodType();
+    return ss.str();
+}
+
 // Classe: Arvore BST
 // Constructor
 ArvoreBST::ArvoreBST()

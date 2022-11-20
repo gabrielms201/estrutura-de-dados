@@ -11,16 +11,17 @@ int main(int argc, char* argv[])
     try
     {
         // Pegando dos parametros onde esta o arquivo
+
         std::string filePath = argc >= 2 ? argv[1] : "filtered_data.csv";
 
         ArvoreBST bst = ArvoreBST();
         // Objeto da classe que realiza o armazenamento do Csv dentro da BST
-        CsvManager manager = CsvManager(filePath, &bst);
+        CsvManager csvManager = CsvManager(filePath, &bst);
         // Metodo que armazena o Csv na BST
-        manager.OpenFileAndStorage();
+        csvManager.OpenFileAndStorage();
         // Chama o menu (metodo estatico da classe BSTViewer)
-        BSTManager::Menu(bst);
-
+        BSTManager bstManager = BSTManager(csvManager, bst);
+        bstManager.Menu();
         return 0;
     }
     catch (std::exception ex)

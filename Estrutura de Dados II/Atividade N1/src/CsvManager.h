@@ -5,7 +5,7 @@
 // PAULO HENRIQUE BRAGA CECHINEL           - 32151128
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
-#ifndef CSV_STORAGE_HEADER
+#ifndef CSV_MANAGER_HEADER
 #define CSV_MANAGER_HEADER
 
 #include <iostream>
@@ -21,6 +21,8 @@ private:
 	// Atributos
 	//			Caminho do arquivo
 	std::string _filePath;
+	//			Caminho do arquivo de backup
+	std::string _backupPath;
 	//			Ponteiro para a arvore que sera populada
 	ArvoreBST* _bst;
 	//			Quantidade de headers do CSV
@@ -37,9 +39,14 @@ private:
 public:
 	// Metodos Publicos
 	void OpenFileAndStorage();
+	void SaveBackup();
+
+	std::list<std::string> StorageBstIntoCsvLinesList() const;
+	const No* StorageBstIntoCsvLinesList(std::list<std::string>& lines, const No* node) const;
 
 	// Construtor
 	CsvManager(std::string filePath, ArvoreBST* bst);
+
 
 };
 

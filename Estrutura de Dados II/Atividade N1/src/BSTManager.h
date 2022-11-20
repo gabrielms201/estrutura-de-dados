@@ -5,7 +5,7 @@
 // PAULO HENRIQUE BRAGA CECHINEL           - 32151128
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
-#ifndef BST_VIEWER_HEADER
+#ifndef BST_MANAGER_HEADER
 #define BST_MANAGER_HEADER
 
 #include <cstdlib>
@@ -19,12 +19,17 @@
 #include "ArvoreBinaria.h"
 #include <list>
 #include <iostream>
+#include "CsvManager.h"
 
 class BSTManager
 {
 public:
-	static void Menu(ArvoreBST& bst);
+	BSTManager(CsvManager& csvManager, ArvoreBST& bst);
+	void Menu();
 	static void Freeze();
+private:
+	CsvManager _csvManager;
+	ArvoreBST _bst;
 };
 
 

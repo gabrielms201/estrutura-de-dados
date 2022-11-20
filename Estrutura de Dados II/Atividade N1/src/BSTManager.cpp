@@ -6,11 +6,14 @@
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
 #include "BSTManager.h"
+BSTManager::BSTManager(CsvManager& csvManager, ArvoreBST& bst) :
+	_csvManager(csvManager), _bst(bst)
+{
+}
 /// <summary>
-/// Imprime o menu na tela
+//  Imprime o menu na tela
 /// </summary>
-/// <param name="bst"></param>
-void BSTManager::Menu(ArvoreBST& bst)
+void BSTManager::Menu()
 {
 	int option = 999;
 	std::cout << "Bem vindo ao FCRDB (Food Csv Reader And DB)!" << std::endl;
@@ -19,15 +22,17 @@ void BSTManager::Menu(ArvoreBST& bst)
 		std::cout << "\t\t==============" << std::endl;
 		std::cout << "\t\t< FCRDB Menu >" << std::endl;
 		std::cout << "\t\t==============" << std::endl;
-		std::cout << "1- ~> Consultar refeicao." << std::endl;
-		std::cout << "2- ~> Informacoes da Arvore." << std::endl;
-		std::cout << "3- ~> Visualizar alimentos armazenados. " << std::endl;
-		std::cout << "4- ~> Visualizar tabela nutricional de todos os alimentos armazenados. " << std::endl;
-		std::cout << "5- ~> Visualizar todos os nos." << std::endl;
-		std::cout << "6- ~> Print 2D." << std::endl;
-		std::cout << "7- ~> Remover alimento da base de dados." << std::endl;
-		std::cout << "8- ~> Limpar arvore." << std::endl;
-		std::cout << "0- ~> Sair." << std::endl;
+		std::cout << "1-  ~> Consultar refeicao." << std::endl;
+		std::cout << "2-  ~> Informacoes da Arvore." << std::endl;
+		std::cout << "3-  ~> Visualizar alimentos armazenados. " << std::endl;
+		std::cout << "4-  ~> Visualizar tabela nutricional de todos os alimentos armazenados. " << std::endl;
+		std::cout << "5-  ~> Visualizar todos os nos." << std::endl;
+		std::cout << "6-  ~> Print 2D." << std::endl;
+		std::cout << "7-  ~> Remover alimento da base de dados." << std::endl;
+		std::cout << "8-  ~> Limpar arvore." << std::endl;
+		std::cout << "9-  ~> Salvar informacoes da arvore no arquivo de backup." << std::endl;
+		std::cout << "10- ~> Carregar arquivo de Backup" << std::endl;
+		std::cout << "0-  ~> Sair." << std::endl;
 		std::cout << "$ ";
 		std::cin.clear();
 		std::cin >> option;
@@ -49,39 +54,39 @@ void BSTManager::Menu(ArvoreBST& bst)
 				meal.push_back(currentFood);
 			}
 			// Imprime as informacoes nutricionais da refeicao
-			bst.gerarInformacoesNutricionais(meal);
+			_bst.gerarInformacoesNutricionais(meal);
 			std::cout << "Total de calorias consumidas: ";
-			bst.imprimirTotalConsumido(meal);
+			_bst.imprimirTotalConsumido(meal);
 			Freeze();
 			break;
 		}
 		case 2: // Informacoes da arvore
 		{
-			std::cout << bst;
+			std::cout << _bst;
 			Freeze();
 			break;
 		}
 		case 3: // Imprime chaves em ordem
 		{
-			bst.emOrdem(bst.getRaiz());
+			_bst.emOrdem(_bst.getRaiz());
 			Freeze();
 			break;
 		}
 		case 4: // Tabelas nutricionais
 		{
-			bst.printDadosArvore();
+			_bst.printDadosArvore();
 			Freeze();
 			break;
 		}
 		case 5: // Visualizar todos os nos
 		{
-			bst.checkNodes();
+			_bst.checkNodes();
 			Freeze();
 			break;
 		}
 		case 6: // Print 2D
 		{
-			bst.print();
+			_bst.print();
 			Freeze();
 			break;
 		}
@@ -91,19 +96,20 @@ void BSTManager::Menu(ArvoreBST& bst)
 			cin.ignore();
 			string foodToDelete;
 			std::getline(std::cin, foodToDelete);
-			bst.excluir(foodToDelete);
+			_bst.excluir(foodToDelete);
 			Freeze();
 			break;
 		}
 		case 8: // Clear
 		{
 			std::cout << "LIMPANDO ARVORE!!" << std::endl;
-			bst.clear();
+			_bst.clear();
 			Freeze();
 			break;
 		}
 		case 9: // Salvar
 		{
+			_csvManager.SaveBackup();
 			Freeze();
 			break;
 		}

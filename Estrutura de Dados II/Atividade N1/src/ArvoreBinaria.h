@@ -10,6 +10,7 @@
 
 #include <iostream>
 #include <ostream>
+#include <sstream>
 #include <string>
 #include <list>
 #include "Food.h"
@@ -42,6 +43,8 @@ public:
     int calculateHeight(const No* no) const;
     bool isLeaf() const;
     void copyDataFrom(const No* no);
+
+    std::string transformIntoCsvLine() const;
 };
 
 // ArvoreBST
@@ -75,7 +78,6 @@ public:
     // Clear
     void clear();
     void clear(No* node);
-
 
     int folhas(No* atual) const;
     std::string min() const;
