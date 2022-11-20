@@ -6,7 +6,7 @@
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
 #include "BSTManager.h"
-BSTManager::BSTManager(CsvManager& csvManager, ArvoreBST& bst) :
+BSTManager::BSTManager(CsvManager& csvManager, ArvoreBST* bst) :
 	_csvManager(csvManager), _bst(bst)
 {
 }
@@ -54,39 +54,39 @@ void BSTManager::Menu()
 				meal.push_back(currentFood);
 			}
 			// Imprime as informacoes nutricionais da refeicao
-			_bst.gerarInformacoesNutricionais(meal);
+			_bst->gerarInformacoesNutricionais(meal);
 			std::cout << "Total de calorias consumidas: ";
-			_bst.imprimirTotalConsumido(meal);
+			_bst->imprimirTotalConsumido(meal);
 			Freeze();
 			break;
 		}
 		case 2: // Informacoes da arvore
 		{
-			std::cout << _bst;
+			std::cout << *_bst;
 			Freeze();
 			break;
 		}
 		case 3: // Imprime chaves em ordem
 		{
-			_bst.emOrdem(_bst.getRaiz());
+			_bst->emOrdem(_bst->getRaiz());
 			Freeze();
 			break;
 		}
 		case 4: // Tabelas nutricionais
 		{
-			_bst.printDadosArvore();
+			_bst->printDadosArvore();
 			Freeze();
 			break;
 		}
 		case 5: // Visualizar todos os nos
 		{
-			_bst.checkNodes();
+			_bst->checkNodes();
 			Freeze();
 			break;
 		}
 		case 6: // Print 2D
 		{
-			_bst.print();
+			_bst->print();
 			Freeze();
 			break;
 		}
@@ -96,14 +96,14 @@ void BSTManager::Menu()
 			cin.ignore();
 			string foodToDelete;
 			std::getline(std::cin, foodToDelete);
-			_bst.excluir(foodToDelete);
+			_bst->excluir(foodToDelete);
 			Freeze();
 			break;
 		}
 		case 8: // Clear
 		{
 			std::cout << "LIMPANDO ARVORE!!" << std::endl;
-			_bst.clear();
+			_bst->clear();
 			Freeze();
 			break;
 		}
@@ -115,7 +115,10 @@ void BSTManager::Menu()
 		}
 		case 10: // Carregar
 		{
+			_bst->clear();
+			_csvManager.OpenFileAndStorage(CsvType::BACKUP);
 			Freeze();
+			break;
 		}
 		case 0: // SAir
 		{

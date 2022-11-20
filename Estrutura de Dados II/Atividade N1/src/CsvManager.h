@@ -13,7 +13,11 @@
 #include <fstream>
 #include <stdexcept>
 #include "ArvoreBinaria.h"
-
+enum class CsvType
+{
+	DEFAULT,
+	BACKUP
+};
 
 class CsvManager
 {
@@ -38,7 +42,7 @@ private:
 
 public:
 	// Metodos Publicos
-	void OpenFileAndStorage();
+	void OpenFileAndStorage(CsvType type);
 	void SaveBackup();
 
 	std::list<std::string> StorageBstIntoCsvLinesList() const;

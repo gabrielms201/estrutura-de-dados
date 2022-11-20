@@ -23,11 +23,17 @@ CsvManager::CsvManager(std::string filePath, ArvoreBST* bst)
 /// Esse metodo abrir o CSV, pular os headers e então criar uma stream com os dados desse arquivo
 /// Atraves dessa stream, o método StorageStreamIntoBST() é chamado.
 /// </summary>
-void CsvManager::OpenFileAndStorage()
+void CsvManager::OpenFileAndStorage(CsvType type)
 {
 	// Aqui estamos criado um "Input File Stream" para podermos ler o arquivo no caminho (configurado no atributo) 
 	// std::ifstream::in -> Modo de leitura (input)
-	std::ifstream inputFile(_filePath, std::ifstream::in);
+	std::string path;
+	if (type == CsvType::BACKUP)
+		path = _backupPath;
+	else
+		path = _filePath;
+	std::ifstream inputFile(path, std::ifstream::in);
+
 	if (!inputFile.is_open())
 	{
 		std::string message = "Erro tentando abrir o arquivo CSV\n Por favor verifique se o caminho do mesmo esta configurado corretamente.";
@@ -70,6 +76,7 @@ void CsvManager::SaveBackup()
 		throw std::invalid_argument(message);
 	}
 	// Write each line
+	backupFile << "header1,\n" << "header2,\n";
 	for (list<std::string>::iterator it = lines.begin(); it != lines.end(); it++)
 	{
 		backupFile << *it;

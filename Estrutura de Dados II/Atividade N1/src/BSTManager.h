@@ -24,12 +24,12 @@
 class BSTManager
 {
 public:
-	BSTManager(CsvManager& csvManager, ArvoreBST& bst);
+	BSTManager(CsvManager& csvManager, ArvoreBST* bst);
 	void Menu();
 	static void Freeze();
 private:
 	CsvManager _csvManager;
-	ArvoreBST _bst;
+	ArvoreBST* _bst;
 };
 
 

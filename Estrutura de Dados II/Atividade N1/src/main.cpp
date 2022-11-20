@@ -18,9 +18,9 @@ int main(int argc, char* argv[])
         // Objeto da classe que realiza o armazenamento do Csv dentro da BST
         CsvManager csvManager = CsvManager(filePath, &bst);
         // Metodo que armazena o Csv na BST
-        csvManager.OpenFileAndStorage();
+        csvManager.OpenFileAndStorage(CsvType::DEFAULT);
         // Chama o menu (metodo estatico da classe BSTViewer)
-        BSTManager bstManager = BSTManager(csvManager, bst);
+        BSTManager bstManager = BSTManager(csvManager, &bst);
         bstManager.Menu();
         return 0;
     }
