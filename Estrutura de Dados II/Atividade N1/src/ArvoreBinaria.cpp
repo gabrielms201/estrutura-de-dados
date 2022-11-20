@@ -41,6 +41,12 @@ bool No::isLeaf() const
     return esq == NULL && dir == NULL;
 }
 
+void No::copyDataFrom(const No* no)
+{
+    chave = no->getChave();
+    dado = no->getDado();
+}
+
 // Classe: Arvore BST
 // Constructor
 ArvoreBST::ArvoreBST()
@@ -349,58 +355,115 @@ int ArvoreBST::altura(No* atual) const
         }
     }
 }
-//versao A
-No* ArvoreBST::excluir(No* t, std::string key)
+void ArvoreBST::excluir(std::string key)
 {
-    //Arvore t vazia
-    if (t == NULL)
-        return t;
-
-    if (key < t->getChave())
-        t->setEsq(excluir(t->getEsq(), key));
+    excluir(raiz, key);
+}
+//versao A
+No* ArvoreBST::excluir(No* no, std::string key)
+{
+    if (no == NULL)
+        return NULL;
+    else if (no->getChave() == key)
+        no = removeNode(no);
+    else if (no->getChave() > key)
+        no->setEsq(excluir(no->getEsq(), key));
     else
-        if (key > t->getChave())
-            t->setDir(excluir(t->getDir(), key));
+        no->setDir(excluir(no->getDir(), key));
 
-    //encontramos o no a ser removido
-        else
+    no = balance(no);
+    return no;
+}
+
+No* ArvoreBST::removeNode(No* node)
+{
+    No* parent = node->getParent();
+
+    // Case 1: The node to be removed is a leaf.
+    if (node->isLeaf())
+    {
+        updateParentChild(parent, node, NULL);
+
+        delete node;
+        node = NULL;
+    }
+    // Case 2: The node to be removed has no left child/subtree.
+    else if (node->getEsq() == NULL)
+    {
+        No* newChild = node->getDir();
+        updateParentChild(parent, node, newChild);
+
+        delete node;
+        node = newChild;
+    }
+    // Case 3: The node to be removed has no right child/subtree.
+    else if (node->getDir() == NULL)
+    {
+        No* newChild = node->getEsq();
+        updateParentChild(parent, node, newChild);
+
+        delete node;
+        node = newChild;
+    }
+    // Case 4: The node to be removed has both left and right children/subtrees.
+    else
+    {
+        // To remove the node, we are reducing the problem to Case 3.
+        // In this case, predecessor is located in the node's left child/subtree and
+        // is the node that has no right child/subtree.
+        No* pred = predecessor(node->getChave());
+
+        // Instead of only updating pointers, we are copying the data from the
+        // predecessor to the node pointer and then we remove the predecessor node.
+        node->copyDataFrom(pred);
+        node->setEsq(excluir(node->getEsq(), pred->getChave()));
+    }
+
+    return node;
+}
+
+No* ArvoreBST::predecessor(std::string chave) const
+{
+    No* node = Pesquisar(chave, raiz);
+    return node == NULL ? NULL : predecessorInternal(node);
+}
+
+No* ArvoreBST::predecessorInternal(No* node) const
+{
+    if (node->getEsq() != NULL)
+    {
+        return findMax(node->getEsq());
+    }
+    else
+    {
+        No* current = node;
+        No* currentParent = node->getParent();
+        while (currentParent != NULL && current == currentParent->getEsq())
         {
-            //Caso1: o no a ser excluido nao tem filhos
-            if (t->getEsq() == NULL && t->getDir() == NULL)
-            {
-                delete(t);
-                return NULL; //faz o pai apontar para NULL e o n� n�o faz mais parte da BST	
-            }
-            else
-                //Caso2: tem apenas um filho, a esquerda ou a direita
-                if (t->getEsq() == NULL)
-                {
-                    No* temp = t->getDir();
-                    delete(t);
-                    return temp; //Faz o pai apontar para o �nico filho do n�
-                }
-                else
-                    if (t->getDir() == NULL)
-                    {
-                        No* temp = t->getEsq();
-                        delete(t);
-                        return temp; //Faz o pai apontar para o �nico filho do n�
-                    }
-
-            //Caso3: o no a ser excluido tem 2 filhos. Vamos escolher o menor dos maiores
-            //para substituir o no que sera removido. Sucessor = menor no na sub-arvore da direita
-
-            No* temp = findMin(t->getDir());
-
-            //Copia a chave do sucessor para o no que esta sendo removido
-            t->setChave(temp->getChave());
-
-            //Remove da arvore o sucessor!
-            t->setDir(excluir(t->getDir(), temp->getChave()));
+            current = currentParent;
+            currentParent = current->getParent();
         }
 
-    //retorna a raiz da arvore
-    return t;
+        return currentParent;
+    }
+}
+
+void ArvoreBST::clear()
+{
+    clear(raiz);
+    raiz = NULL;
+}
+
+void ArvoreBST::clear(No* node)
+{
+    if (node != NULL)
+    {
+        clear(node->getEsq());
+        clear(node->getDir());
+
+        delete node;
+        node = nullptr;
+    }
 }
 
 int ArvoreBST::folhas(No* atual) const

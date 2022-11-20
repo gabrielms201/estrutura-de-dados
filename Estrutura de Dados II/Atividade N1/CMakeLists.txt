@@ -9,6 +9,6 @@ add_executable(${PROJECT_NAME}
     "src/Food.h"
     "src/CsvManager.cpp"
     "src/CsvManager.h"
-    "src/BSTViewer.cpp"
-    "src/BSTViewer.h"
+    "src/BSTManager.cpp"
+    "src/BSTManager.h"
 )

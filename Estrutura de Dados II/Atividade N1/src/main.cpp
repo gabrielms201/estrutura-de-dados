@@ -19,7 +19,7 @@ int main(int argc, char* argv[])
         // Metodo que armazena o Csv na BST
         manager.OpenFileAndStorage();
         // Chama o menu (metodo estatico da classe BSTViewer)
-        BSTViewer::Menu(bst);
+        BSTManager::Menu(bst);
 
         return 0;
     }

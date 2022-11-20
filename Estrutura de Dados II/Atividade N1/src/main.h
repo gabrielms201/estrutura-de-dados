@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include "Food.h"
 #include "ArvoreBinaria.h"
-#include "BSTViewer.h"
+#include "BSTManager.h"
 #include "CsvManager.h"
 
 #endif

@@ -6,7 +6,8 @@
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
 #ifndef BST_VIEWER_HEADER
-#define BST_VIEWER_HEADER
+#define BST_MANAGER_HEADER
+
 #include <cstdlib>
 // Macro de compilacao para identificar o sistema na hora de limpar a tela
 #ifdef _WIN32
@@ -19,10 +20,11 @@
 #include <list>
 #include <iostream>
 
-class BSTViewer
+class BSTManager
 {
 public:
 	static void Menu(ArvoreBST& bst);
+	static void Freeze();
 };
 
 

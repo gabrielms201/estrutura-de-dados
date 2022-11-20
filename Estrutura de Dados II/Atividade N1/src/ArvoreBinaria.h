@@ -41,6 +41,7 @@ public:
     void updateBalanceFactor();
     int calculateHeight(const No* no) const;
     bool isLeaf() const;
+    void copyDataFrom(const No* no);
 };
 
 // ArvoreBST
@@ -65,7 +66,17 @@ public:
     No* PesquisarRec(No* r, std::string k) const;
     int contarNos(No* atual) const;
     int altura(No* atual) const;
-    No* excluir(No* t, std::string key);
+    // Excluir
+    void excluir(std::string key);
+    No* excluir(No* no, std::string key);
+    No* removeNode(No* node);
+    No* predecessor(std::string chave) const;
+    No* predecessorInternal(No* node) const;
+    // Clear
+    void clear();
+    void clear(No* node);
+
+
     int folhas(No* atual) const;
     std::string min() const;
     std::string max() const;

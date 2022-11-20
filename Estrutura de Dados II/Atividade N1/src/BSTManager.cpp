@@ -5,12 +5,12 @@
 // PAULO HENRIQUE BRAGA CECHINEL           - 32151128
 // RICARDO GABRIEL MARQUES DOS SANTOS RUIZ - 32134908
 
-#include "BSTViewer.h"
+#include "BSTManager.h"
 /// <summary>
 /// Imprime o menu na tela
 /// </summary>
 /// <param name="bst"></param>
-void BSTViewer::Menu(ArvoreBST& bst)
+void BSTManager::Menu(ArvoreBST& bst)
 {
 	int option = 999;
 	std::cout << "Bem vindo ao FCRDB (Food Csv Reader And DB)!" << std::endl;
@@ -23,17 +23,18 @@ void BSTViewer::Menu(ArvoreBST& bst)
 		std::cout << "2- ~> Informacoes da Arvore." << std::endl;
 		std::cout << "3- ~> Visualizar alimentos armazenados. " << std::endl;
 		std::cout << "4- ~> Visualizar tabela nutricional de todos os alimentos armazenados. " << std::endl;
-		std::cout << "5- ~> Visualizar todos os nos" << std::endl;
-		std::cout << "6- ~> Print 2D" << std::endl;
+		std::cout << "5- ~> Visualizar todos os nos." << std::endl;
+		std::cout << "6- ~> Print 2D." << std::endl;
+		std::cout << "7- ~> Remover alimento da base de dados." << std::endl;
+		std::cout << "8- ~> Limpar arvore." << std::endl;
 		std::cout << "0- ~> Sair." << std::endl;
 		std::cout << "$ ";
 		std::cin.clear();
 		std::cin >> option;
 		switch (option)
 		{
-		case 1:
+		case 1: // Consultar refeicao
 		{
-			// Consultar refeicao
 			int qty = 0;
 			std::cout << "Por favor, informe a quantidade de alimentos da sua refeicao: " << std::endl;
 			std::cin >> qty;
@@ -42,7 +43,7 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			std::string currentFood;
 			for (int i = 0; i < qty; i++)
 			{
-				std::cout << "Informe a refeicao n" << i + 1 << " :" << std::endl ;
+				std::cout << "Informe a refeicao n" << i + 1 << " :" << std::endl;
 				std::cout << "$ ";
 				getline(std::cin, currentFood);
 				meal.push_back(currentFood);
@@ -51,52 +52,66 @@ void BSTViewer::Menu(ArvoreBST& bst)
 			bst.gerarInformacoesNutricionais(meal);
 			std::cout << "Total de calorias consumidas: ";
 			bst.imprimirTotalConsumido(meal);
-			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
-			std::cin.ignore();
-			std::cin.get();
-			int clear = CLEAR_SCREAM();
+			Freeze();
 			break;
 		}
-		case 2:
+		case 2: // Informacoes da arvore
 		{
-			// Informacoes da arvore
 			std::cout << bst;
-			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
-			std::cin.ignore();
-			std::cin.get();
-			int clear = CLEAR_SCREAM();
+			Freeze();
 			break;
 		}
-		case 3:
+		case 3: // Imprime chaves em ordem
 		{
-			// Imprime chaves em ordem
 			bst.emOrdem(bst.getRaiz());
-			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
-			std::cin.ignore();
-			std::cin.get();
-			int clear = CLEAR_SCREAM();
+			Freeze();
 			break;
 		}
-		case 4:
+		case 4: // Tabelas nutricionais
 		{
-			// Tabelas nutricionais
 			bst.printDadosArvore();
-			std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
-			std::cin.ignore();
-			std::cin.get();
-			int clear = CLEAR_SCREAM();
+			Freeze();
 			break;
 		}
-		case 5:
+		case 5: // Visualizar todos os nos
 		{
 			bst.checkNodes();
+			Freeze();
 			break;
 		}
-		case 6:
+		case 6: // Print 2D
 		{
 			bst.print();
+			Freeze();
+			break;
 		}
-		case 0:
+		case 7: // Excluir
+		{
+			std::cout << "Por favor, informe o alimento que deseja remover: " << std::endl;
+			cin.ignore();
+			string foodToDelete;
+			std::getline(std::cin, foodToDelete);
+			bst.excluir(foodToDelete);
+			Freeze();
+			break;
+		}
+		case 8: // Clear
+		{
+			std::cout << "LIMPANDO ARVORE!!" << std::endl;
+			bst.clear();
+			Freeze();
+			break;
+		}
+		case 9: // Salvar
+		{
+			Freeze();
+			break;
+		}
+		case 10: // Carregar
+		{
+			Freeze();
+		}
+		case 0: // SAir
 		{
 			break;
 		}
@@ -108,3 +123,12 @@ void BSTViewer::Menu(ArvoreBST& bst)
 
 
 }
+
+void BSTManager::Freeze()
+{
+	std::cout << std::endl << "Digite uma tecla para continuar: " << std::endl;
+	std::cin.ignore();
+	std::cin.get();
+	int clear = CLEAR_SCREAM();
+}
+
