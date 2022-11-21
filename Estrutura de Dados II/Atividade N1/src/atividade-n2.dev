@@ -1,6 +1,6 @@
 [Project]
-FileName=Projeto.dev
-Name=Projeto1
+FileName=atividade-n2.dev
+Name=atividade-n2
 Type=1
 Ver=2
 ObjFiles=
@@ -19,7 +19,7 @@ ObjectOutput=
 LogOutput=
 LogOutputEnabled=0
 OverrideOutput=0
-OverrideOutputName=Projeto.exe
+OverrideOutputName=atividade-n2.exe
 HostApplication=
 UseCustomMakefile=0
 CustomMakefile=
@@ -71,7 +71,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit3]
-FileName=BSTViewer.cpp
+FileName=BSTManager.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -81,7 +81,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit4]
-FileName=BSTViewer.h
+FileName=BSTManager.h
 CompileCpp=1
 Folder=
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=CsvStorage.cpp
+FileName=CsvManager.cpp
 CompileCpp=1
 Folder=
 Compile=1
@@ -101,7 +101,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=CsvStorage.h
+FileName=CsvManager.h
 CompileCpp=1
 Folder=
 Compile=1

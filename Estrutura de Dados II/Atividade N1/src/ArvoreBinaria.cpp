@@ -493,7 +493,7 @@ void ArvoreBST::clear(No* node)
         clear(node->getDir());
 
         delete node;
-        node = nullptr;
+        node = NULL;
     }
 }
 
