@@ -1,0 +1,40 @@
+# Project: atividade-n2
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = ArvoreBinaria.o BSTManager.o CsvManager.o Food.o main.o
+LINKOBJ  = ArvoreBinaria.o BSTManager.o CsvManager.o Food.o main.o
+LIBS     = -L"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/lib" -L"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/include" -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
+CXXINCS  = -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/include" -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"D:/Arquivos De Programas e Jogos/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
+BIN      = atividade-n2.exe
+CXXFLAGS = $(CXXINCS) -std=c++11
+CFLAGS   = $(INCS) -std=c++11
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+ArvoreBinaria.o: ArvoreBinaria.cpp
+	$(CPP) -c ArvoreBinaria.cpp -o ArvoreBinaria.o $(CXXFLAGS)
+
+BSTManager.o: BSTManager.cpp
+	$(CPP) -c BSTManager.cpp -o BSTManager.o $(CXXFLAGS)
+
+CsvManager.o: CsvManager.cpp
+	$(CPP) -c CsvManager.cpp -o CsvManager.o $(CXXFLAGS)
+
+Food.o: Food.cpp
+	$(CPP) -c Food.cpp -o Food.o $(CXXFLAGS)
+
+main.o: main.cpp
+	$(CPP) -c main.cpp -o main.o $(CXXFLAGS)
